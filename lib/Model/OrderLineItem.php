@@ -1,11 +1,11 @@
 <?php
 /**
- * Reference
+ * OrderLineItem
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * Reference Class Doc Comment
+ * OrderLineItem Class Doc Comment
  *
  * @category Class
- * @description This field is returned for NON_SALE_CHARGE transactions that contain non-transactional seller fees.
- * @package  Ebay\Sell
+ * @description This type is used to show the fees that are deducted from a seller payout for each line item in an order.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Reference implements ModelInterface, ArrayAccess, \JsonSerializable
+class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Reference';
+    protected static $openAPIModelName = 'OrderLineItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,9 @@ class Reference implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'reference_id' => 'string',
-        'reference_type' => 'string'
+        'fee_basis_amount' => '\Ebay\Sell\Finances\Model\Amount',
+        'line_item_id' => 'string',
+        'marketplace_fees' => '\Ebay\Sell\Finances\Model\Fee[]'
     ];
 
     /**
@@ -72,8 +73,9 @@ class Reference implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'reference_id' => null,
-        'reference_type' => null
+        'fee_basis_amount' => null,
+        'line_item_id' => null,
+        'marketplace_fees' => null
     ];
 
     /**
@@ -103,8 +105,9 @@ class Reference implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'reference_id' => 'referenceId',
-        'reference_type' => 'referenceType'
+        'fee_basis_amount' => 'feeBasisAmount',
+        'line_item_id' => 'lineItemId',
+        'marketplace_fees' => 'marketplaceFees'
     ];
 
     /**
@@ -113,8 +116,9 @@ class Reference implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'reference_id' => 'setReferenceId',
-        'reference_type' => 'setReferenceType'
+        'fee_basis_amount' => 'setFeeBasisAmount',
+        'line_item_id' => 'setLineItemId',
+        'marketplace_fees' => 'setMarketplaceFees'
     ];
 
     /**
@@ -123,8 +127,9 @@ class Reference implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'reference_id' => 'getReferenceId',
-        'reference_type' => 'getReferenceType'
+        'fee_basis_amount' => 'getFeeBasisAmount',
+        'line_item_id' => 'getLineItemId',
+        'marketplace_fees' => 'getMarketplaceFees'
     ];
 
     /**
@@ -184,8 +189,9 @@ class Reference implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['reference_id'] = isset($data['reference_id']) ? $data['reference_id'] : null;
-        $this->container['reference_type'] = isset($data['reference_type']) ? $data['reference_type'] : null;
+        $this->container['fee_basis_amount'] = $data['fee_basis_amount'] ?? null;
+        $this->container['line_item_id'] = $data['line_item_id'] ?? null;
+        $this->container['marketplace_fees'] = $data['marketplace_fees'] ?? null;
     }
 
     /**
@@ -213,49 +219,73 @@ class Reference implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets reference_id
+     * Gets fee_basis_amount
      *
-     * @return string|null
+     * @return \Ebay\Sell\Finances\Model\Amount|null
      */
-    public function getReferenceId()
+    public function getFeeBasisAmount()
     {
-        return $this->container['reference_id'];
+        return $this->container['fee_basis_amount'];
     }
 
     /**
-     * Sets reference_id
+     * Sets fee_basis_amount
      *
-     * @param string|null $reference_id The identifier of the transaction as specified by the referenceType. For example, with a referenceType of item_id, the referenceId refers to a unique item. This item may have several NON_SALE_CHARGE transactions.
+     * @param \Ebay\Sell\Finances\Model\Amount|null $fee_basis_amount fee_basis_amount
      *
      * @return self
      */
-    public function setReferenceId($reference_id)
+    public function setFeeBasisAmount($fee_basis_amount)
     {
-        $this->container['reference_id'] = $reference_id;
+        $this->container['fee_basis_amount'] = $fee_basis_amount;
 
         return $this;
     }
 
     /**
-     * Gets reference_type
+     * Gets line_item_id
      *
      * @return string|null
      */
-    public function getReferenceType()
+    public function getLineItemId()
     {
-        return $this->container['reference_type'];
+        return $this->container['line_item_id'];
     }
 
     /**
-     * Sets reference_type
+     * Sets line_item_id
      *
-     * @param string|null $reference_type An enumeration value that identifies the reference type associated with the referenceId. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/finances/types/pay:ReferenceTypeEnum'>eBay API documentation</a>
+     * @param string|null $line_item_id The unique identifier of an order line item.
      *
      * @return self
      */
-    public function setReferenceType($reference_type)
+    public function setLineItemId($line_item_id)
     {
-        $this->container['reference_type'] = $reference_type;
+        $this->container['line_item_id'] = $line_item_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets marketplace_fees
+     *
+     * @return \Ebay\Sell\Finances\Model\Fee[]|null
+     */
+    public function getMarketplaceFees()
+    {
+        return $this->container['marketplace_fees'];
+    }
+
+    /**
+     * Sets marketplace_fees
+     *
+     * @param \Ebay\Sell\Finances\Model\Fee[]|null $marketplace_fees An array of all fees accrued for the order line item and deducted from a seller payout.
+     *
+     * @return self
+     */
+    public function setMarketplaceFees($marketplace_fees)
+    {
+        $this->container['marketplace_fees'] = $marketplace_fees;
 
         return $this;
     }
@@ -280,7 +310,7 @@ class Reference implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

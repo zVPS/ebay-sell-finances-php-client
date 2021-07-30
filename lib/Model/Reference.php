@@ -1,11 +1,11 @@
 <?php
 /**
- * SellerFundsSummaryResponse
+ * Reference
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * SellerFundsSummaryResponse Class Doc Comment
+ * Reference Class Doc Comment
  *
  * @category Class
- * @description This type is used by the response payload of the &lt;strong&gt;getSellerFundsSummary&lt;/strong&gt; method. All of the funds returned in  &lt;strong&gt;getSellerFundsSummary&lt;/strong&gt; are funds that have not yet been paid to the seller through a seller payout. If there are no funds that are pending, on hold, or being processed for the seller&#39;s account, no response payload is returned, and an http status code of &lt;code&gt;204 - No Content&lt;/code&gt; is returned instead.
- * @package  Ebay\Sell
+ * @description This field is returned for NON_SALE_CHARGE transactions that contain non-transactional seller fees.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class Reference implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SellerFundsSummaryResponse';
+    protected static $openAPIModelName = 'Reference';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,10 +60,8 @@ class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
-        'available_funds' => '\Ebay\Sell\Finances\Model\Amount',
-        'funds_on_hold' => '\Ebay\Sell\Finances\Model\Amount',
-        'processing_funds' => '\Ebay\Sell\Finances\Model\Amount',
-        'total_funds' => '\Ebay\Sell\Finances\Model\Amount'
+        'reference_id' => 'string',
+        'reference_type' => 'string'
     ];
 
     /**
@@ -74,10 +72,8 @@ class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'available_funds' => null,
-        'funds_on_hold' => null,
-        'processing_funds' => null,
-        'total_funds' => null
+        'reference_id' => null,
+        'reference_type' => null
     ];
 
     /**
@@ -107,10 +103,8 @@ class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
-        'available_funds' => 'availableFunds',
-        'funds_on_hold' => 'fundsOnHold',
-        'processing_funds' => 'processingFunds',
-        'total_funds' => 'totalFunds'
+        'reference_id' => 'referenceId',
+        'reference_type' => 'referenceType'
     ];
 
     /**
@@ -119,10 +113,8 @@ class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $setters = [
-        'available_funds' => 'setAvailableFunds',
-        'funds_on_hold' => 'setFundsOnHold',
-        'processing_funds' => 'setProcessingFunds',
-        'total_funds' => 'setTotalFunds'
+        'reference_id' => 'setReferenceId',
+        'reference_type' => 'setReferenceType'
     ];
 
     /**
@@ -131,10 +123,8 @@ class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
      * @var string[]
      */
     protected static $getters = [
-        'available_funds' => 'getAvailableFunds',
-        'funds_on_hold' => 'getFundsOnHold',
-        'processing_funds' => 'getProcessingFunds',
-        'total_funds' => 'getTotalFunds'
+        'reference_id' => 'getReferenceId',
+        'reference_type' => 'getReferenceType'
     ];
 
     /**
@@ -194,10 +184,8 @@ class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
-        $this->container['available_funds'] = isset($data['available_funds']) ? $data['available_funds'] : null;
-        $this->container['funds_on_hold'] = isset($data['funds_on_hold']) ? $data['funds_on_hold'] : null;
-        $this->container['processing_funds'] = isset($data['processing_funds']) ? $data['processing_funds'] : null;
-        $this->container['total_funds'] = isset($data['total_funds']) ? $data['total_funds'] : null;
+        $this->container['reference_id'] = $data['reference_id'] ?? null;
+        $this->container['reference_type'] = $data['reference_type'] ?? null;
     }
 
     /**
@@ -225,97 +213,49 @@ class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
 
 
     /**
-     * Gets available_funds
+     * Gets reference_id
      *
-     * @return \Ebay\Sell\Finances\Model\Amount|null
+     * @return string|null
      */
-    public function getAvailableFunds()
+    public function getReferenceId()
     {
-        return $this->container['available_funds'];
+        return $this->container['reference_id'];
     }
 
     /**
-     * Sets available_funds
+     * Sets reference_id
      *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $available_funds available_funds
+     * @param string|null $reference_id The identifier of the transaction as specified by the referenceType. For example, with a referenceType of item_id, the referenceId refers to a unique item. This item may have several NON_SALE_CHARGE transactions.
      *
      * @return self
      */
-    public function setAvailableFunds($available_funds)
+    public function setReferenceId($reference_id)
     {
-        $this->container['available_funds'] = $available_funds;
+        $this->container['reference_id'] = $reference_id;
 
         return $this;
     }
 
     /**
-     * Gets funds_on_hold
+     * Gets reference_type
      *
-     * @return \Ebay\Sell\Finances\Model\Amount|null
+     * @return string|null
      */
-    public function getFundsOnHold()
+    public function getReferenceType()
     {
-        return $this->container['funds_on_hold'];
+        return $this->container['reference_type'];
     }
 
     /**
-     * Sets funds_on_hold
+     * Sets reference_type
      *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $funds_on_hold funds_on_hold
+     * @param string|null $reference_type An enumeration value that identifies the reference type associated with the referenceId. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/finances/types/pay:ReferenceTypeEnum'>eBay API documentation</a>
      *
      * @return self
      */
-    public function setFundsOnHold($funds_on_hold)
+    public function setReferenceType($reference_type)
     {
-        $this->container['funds_on_hold'] = $funds_on_hold;
-
-        return $this;
-    }
-
-    /**
-     * Gets processing_funds
-     *
-     * @return \Ebay\Sell\Finances\Model\Amount|null
-     */
-    public function getProcessingFunds()
-    {
-        return $this->container['processing_funds'];
-    }
-
-    /**
-     * Sets processing_funds
-     *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $processing_funds processing_funds
-     *
-     * @return self
-     */
-    public function setProcessingFunds($processing_funds)
-    {
-        $this->container['processing_funds'] = $processing_funds;
-
-        return $this;
-    }
-
-    /**
-     * Gets total_funds
-     *
-     * @return \Ebay\Sell\Finances\Model\Amount|null
-     */
-    public function getTotalFunds()
-    {
-        return $this->container['total_funds'];
-    }
-
-    /**
-     * Sets total_funds
-     *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $total_funds total_funds
-     *
-     * @return self
-     */
-    public function setTotalFunds($total_funds)
-    {
-        $this->container['total_funds'] = $total_funds;
+        $this->container['reference_type'] = $reference_type;
 
         return $this;
     }
@@ -340,7 +280,7 @@ class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

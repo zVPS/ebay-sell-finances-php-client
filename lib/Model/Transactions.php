@@ -1,11 +1,11 @@
 <?php
 /**
- * Payouts
+ * Transactions
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * Payouts Class Doc Comment
+ * Transactions Class Doc Comment
  *
  * @category Class
- * @description This type is the base response type of the &lt;strong&gt;getPayouts&lt;/strong&gt; method, and contains an array of one or more payouts (that match the input criteria), the total count of payouts in the response, and various pagination data for the results set.
- * @package  Ebay\Sell
+ * @description This is the base response type of the &lt;b&gt;getTransactions&lt;/b&gt; method. The &lt;b&gt;getTransactions&lt;/b&gt; response includes details on one or more monetary transactions that match the input criteria, as well as pagination data.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
+class Transactions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Payouts';
+    protected static $openAPIModelName = 'Transactions';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -64,9 +64,9 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
         'limit' => 'int',
         'next' => 'string',
         'offset' => 'int',
-        'payouts' => '\Ebay\Sell\Finances\Model\Payout[]',
         'prev' => 'string',
-        'total' => 'int'
+        'total' => 'int',
+        'transactions' => '\Ebay\Sell\Finances\Model\Transaction[]'
     ];
 
     /**
@@ -81,9 +81,9 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
         'limit' => null,
         'next' => null,
         'offset' => null,
-        'payouts' => null,
         'prev' => null,
-        'total' => null
+        'total' => null,
+        'transactions' => null
     ];
 
     /**
@@ -117,9 +117,9 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
         'limit' => 'limit',
         'next' => 'next',
         'offset' => 'offset',
-        'payouts' => 'payouts',
         'prev' => 'prev',
-        'total' => 'total'
+        'total' => 'total',
+        'transactions' => 'transactions'
     ];
 
     /**
@@ -132,9 +132,9 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
         'limit' => 'setLimit',
         'next' => 'setNext',
         'offset' => 'setOffset',
-        'payouts' => 'setPayouts',
         'prev' => 'setPrev',
-        'total' => 'setTotal'
+        'total' => 'setTotal',
+        'transactions' => 'setTransactions'
     ];
 
     /**
@@ -147,9 +147,9 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
         'limit' => 'getLimit',
         'next' => 'getNext',
         'offset' => 'getOffset',
-        'payouts' => 'getPayouts',
         'prev' => 'getPrev',
-        'total' => 'getTotal'
+        'total' => 'getTotal',
+        'transactions' => 'getTransactions'
     ];
 
     /**
@@ -209,13 +209,13 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['href'] = isset($data['href']) ? $data['href'] : null;
-        $this->container['limit'] = isset($data['limit']) ? $data['limit'] : null;
-        $this->container['next'] = isset($data['next']) ? $data['next'] : null;
-        $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
-        $this->container['payouts'] = isset($data['payouts']) ? $data['payouts'] : null;
-        $this->container['prev'] = isset($data['prev']) ? $data['prev'] : null;
-        $this->container['total'] = isset($data['total']) ? $data['total'] : null;
+        $this->container['href'] = $data['href'] ?? null;
+        $this->container['limit'] = $data['limit'] ?? null;
+        $this->container['next'] = $data['next'] ?? null;
+        $this->container['offset'] = $data['offset'] ?? null;
+        $this->container['prev'] = $data['prev'] ?? null;
+        $this->container['total'] = $data['total'] ?? null;
+        $this->container['transactions'] = $data['transactions'] ?? null;
     }
 
     /**
@@ -255,7 +255,7 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets href
      *
-     * @param string|null $href The URI of the getPayouts call request that produced the current page of the result set.
+     * @param string|null $href The URI of the getTransactions method request that produced the current page of the result set.
      *
      * @return self
      */
@@ -279,7 +279,7 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets limit
      *
-     * @param int|null $limit The maximum number of payouts that may be returned per page of the result set. The limit value can be passed in as a query parameter, or if omitted, its value defaults to 20. Note: If this is the last or only page of the result set, the page may contain fewer payouts than the limit value. To determine the number of pages in a result set, divide the total value (total number of payouts matching input criteria) by this limit value, and then round up to the next integer. For example, if the total value was 120 (120 total payouts) and the limit value was 50 (show 50 payouts per page), the total number of pages in the result set is three, so the seller would have to make three separate getPayouts calls to view all payouts matching the input criteria. Maximum: 200 Default: 20
+     * @param int|null $limit The maximum number of monetary transactions that may be returned per page of the result set. The limit value can be passed in as a query parameter, or if omitted, its value defaults to 20. Note: If this is the last or only page of the result set, the page may contain fewer monetary transactions than the limit value. To determine the number of pages in a result set, divide the total value (total number of monetary transactions matching input criteria) by this limit value, and then round up to the next integer. For example, if the total value was 120 (120 total monetary transactions) and the limit value was 50 (show 50 monetary transactions per page), the total number of pages in the result set is three, so the seller would have to make three separate getTransactions calls to view all monetary transactions matching the input criteria. Maximum: 200 Default: 20
      *
      * @return self
      */
@@ -303,7 +303,7 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets next
      *
-     * @param string|null $next The getPayouts call URI to use if you wish to view the next page of the result set. This field is only returned if there is a next page of results to view based on the current input criteria.
+     * @param string|null $next The getTransactions method URI to use if you wish to view the next page of the result set. This field is only returned if there is a next page of results to view based on the current input criteria.
      *
      * @return self
      */
@@ -327,37 +327,13 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets offset
      *
-     * @param int|null $offset This integer value indicates the actual position that the first payout returned on the current page has in the results set. So, if you wanted to view the 11th payout of the result set, you would set the offset value in the request to 10. In the request, you can use the offset parameter in conjunction with the limit parameter to control the pagination of the output. For example, if offset is set to 30 and limit is set to 10, the call retrieves payouts 31 thru 40 from the resulting collection of payouts. Note: This feature employs a zero-based list, where the first item in the list has an offset of 0. Default: 0 (zero)
+     * @param int|null $offset This integer value indicates the actual position that the first monetary transaction returned on the current page has in the results set. So, if you wanted to view the 11th monetary transaction of the result set, you would set the offset value in the request to 10. In the request, you can use the offset parameter in conjunction with the limit parameter to control the pagination of the output. For example, if offset is set to 30 and limit is set to 10, the method retrieves monetary transactions 31 thru 40 from the resulting collection of monetary transactions. Note: This feature employs a zero-based list, where the first item in the list has an offset of 0. Default: 0 (zero)
      *
      * @return self
      */
     public function setOffset($offset)
     {
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets payouts
-     *
-     * @return \Ebay\Sell\Finances\Model\Payout[]|null
-     */
-    public function getPayouts()
-    {
-        return $this->container['payouts'];
-    }
-
-    /**
-     * Sets payouts
-     *
-     * @param \Ebay\Sell\Finances\Model\Payout[]|null $payouts An array of one or more payouts that match the input criteria. Details for each payout include the unique identifier of the payout, the status of the payout, the amount of the payout, and the number of monetary transactions associated with the payout.
-     *
-     * @return self
-     */
-    public function setPayouts($payouts)
-    {
-        $this->container['payouts'] = $payouts;
 
         return $this;
     }
@@ -375,7 +351,7 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets prev
      *
-     * @param string|null $prev The getPayouts call URI to use if you wish to view the previous page of the result set. This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * @param string|null $prev The getTransactions method URI to use if you wish to view the previous page of the result set. This field is only returned if there is a previous page of results to view based on the current input criteria.
      *
      * @return self
      */
@@ -399,13 +375,37 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets total
      *
-     * @param int|null $total This integer value is the total number of payouts in the results set based on the current input criteria. Based on the total number of payouts that match the criteria, and on the limit and offset values, there may be additional pages in the results set.
+     * @param int|null $total This integer value is the total amount of monetary transactions in the result set based on the current input criteria. Based on the total number of monetary transactions that match the criteria, and on the limit and offset values, there may be additional pages in the results set.
      *
      * @return self
      */
     public function setTotal($total)
     {
         $this->container['total'] = $total;
+
+        return $this;
+    }
+
+    /**
+     * Gets transactions
+     *
+     * @return \Ebay\Sell\Finances\Model\Transaction[]|null
+     */
+    public function getTransactions()
+    {
+        return $this->container['transactions'];
+    }
+
+    /**
+     * Sets transactions
+     *
+     * @param \Ebay\Sell\Finances\Model\Transaction[]|null $transactions An array of one or more monetary transactions that match the input criteria. Details for each monetary transaction may include the unique identifier of the order associated with the monetary transaction, the status of the transaction, the amount of the order, the order's buyer, and the unique identifier of the payout (if a payout has been initiated/issued for the order).
+     *
+     * @return self
+     */
+    public function setTransactions($transactions)
+    {
+        $this->container['transactions'] = $transactions;
 
         return $this;
     }
@@ -430,7 +430,7 @@ class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

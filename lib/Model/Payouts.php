@@ -1,11 +1,11 @@
 <?php
 /**
- * Charge
+ * Payouts
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * Charge Class Doc Comment
+ * Payouts Class Doc Comment
  *
  * @category Class
- * @description This type is used by the &lt;b&gt;charge&lt;/b&gt; container, which is an array of one or more charges related to the transfer.
- * @package  Ebay\Sell
+ * @description This type is the base response type of the &lt;strong&gt;getPayouts&lt;/strong&gt; method, and contains an array of one or more payouts (that match the input criteria), the total count of payouts in the response, and various pagination data for the results set.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Charge implements ModelInterface, ArrayAccess, \JsonSerializable
+class Payouts implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Charge';
+    protected static $openAPIModelName = 'Payouts';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,14 +60,13 @@ class Charge implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'cancellation_id' => 'string',
-        'case_id' => 'string',
-        'charge_net_amount' => '\Ebay\Sell\Finances\Model\Amount',
-        'inquiry_id' => 'string',
-        'order_id' => 'string',
-        'payment_dispute_id' => 'string',
-        'refund_id' => 'string',
-        'return_id' => 'string'
+        'href' => 'string',
+        'limit' => 'int',
+        'next' => 'string',
+        'offset' => 'int',
+        'payouts' => '\Ebay\Sell\Finances\Model\Payout[]',
+        'prev' => 'string',
+        'total' => 'int'
     ];
 
     /**
@@ -78,14 +77,13 @@ class Charge implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'cancellation_id' => null,
-        'case_id' => null,
-        'charge_net_amount' => null,
-        'inquiry_id' => null,
-        'order_id' => null,
-        'payment_dispute_id' => null,
-        'refund_id' => null,
-        'return_id' => null
+        'href' => null,
+        'limit' => null,
+        'next' => null,
+        'offset' => null,
+        'payouts' => null,
+        'prev' => null,
+        'total' => null
     ];
 
     /**
@@ -115,14 +113,13 @@ class Charge implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'cancellation_id' => 'cancellationId',
-        'case_id' => 'caseId',
-        'charge_net_amount' => 'chargeNetAmount',
-        'inquiry_id' => 'inquiryId',
-        'order_id' => 'orderId',
-        'payment_dispute_id' => 'paymentDisputeId',
-        'refund_id' => 'refundId',
-        'return_id' => 'returnId'
+        'href' => 'href',
+        'limit' => 'limit',
+        'next' => 'next',
+        'offset' => 'offset',
+        'payouts' => 'payouts',
+        'prev' => 'prev',
+        'total' => 'total'
     ];
 
     /**
@@ -131,14 +128,13 @@ class Charge implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'cancellation_id' => 'setCancellationId',
-        'case_id' => 'setCaseId',
-        'charge_net_amount' => 'setChargeNetAmount',
-        'inquiry_id' => 'setInquiryId',
-        'order_id' => 'setOrderId',
-        'payment_dispute_id' => 'setPaymentDisputeId',
-        'refund_id' => 'setRefundId',
-        'return_id' => 'setReturnId'
+        'href' => 'setHref',
+        'limit' => 'setLimit',
+        'next' => 'setNext',
+        'offset' => 'setOffset',
+        'payouts' => 'setPayouts',
+        'prev' => 'setPrev',
+        'total' => 'setTotal'
     ];
 
     /**
@@ -147,14 +143,13 @@ class Charge implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'cancellation_id' => 'getCancellationId',
-        'case_id' => 'getCaseId',
-        'charge_net_amount' => 'getChargeNetAmount',
-        'inquiry_id' => 'getInquiryId',
-        'order_id' => 'getOrderId',
-        'payment_dispute_id' => 'getPaymentDisputeId',
-        'refund_id' => 'getRefundId',
-        'return_id' => 'getReturnId'
+        'href' => 'getHref',
+        'limit' => 'getLimit',
+        'next' => 'getNext',
+        'offset' => 'getOffset',
+        'payouts' => 'getPayouts',
+        'prev' => 'getPrev',
+        'total' => 'getTotal'
     ];
 
     /**
@@ -214,14 +209,13 @@ class Charge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['cancellation_id'] = isset($data['cancellation_id']) ? $data['cancellation_id'] : null;
-        $this->container['case_id'] = isset($data['case_id']) ? $data['case_id'] : null;
-        $this->container['charge_net_amount'] = isset($data['charge_net_amount']) ? $data['charge_net_amount'] : null;
-        $this->container['inquiry_id'] = isset($data['inquiry_id']) ? $data['inquiry_id'] : null;
-        $this->container['order_id'] = isset($data['order_id']) ? $data['order_id'] : null;
-        $this->container['payment_dispute_id'] = isset($data['payment_dispute_id']) ? $data['payment_dispute_id'] : null;
-        $this->container['refund_id'] = isset($data['refund_id']) ? $data['refund_id'] : null;
-        $this->container['return_id'] = isset($data['return_id']) ? $data['return_id'] : null;
+        $this->container['href'] = $data['href'] ?? null;
+        $this->container['limit'] = $data['limit'] ?? null;
+        $this->container['next'] = $data['next'] ?? null;
+        $this->container['offset'] = $data['offset'] ?? null;
+        $this->container['payouts'] = $data['payouts'] ?? null;
+        $this->container['prev'] = $data['prev'] ?? null;
+        $this->container['total'] = $data['total'] ?? null;
     }
 
     /**
@@ -249,193 +243,169 @@ class Charge implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets cancellation_id
+     * Gets href
      *
      * @return string|null
      */
-    public function getCancellationId()
+    public function getHref()
     {
-        return $this->container['cancellation_id'];
+        return $this->container['href'];
     }
 
     /**
-     * Sets cancellation_id
+     * Sets href
      *
-     * @param string|null $cancellation_id The unique identifier of an order cancellation. This field is only applicable and returned if the charge is related to an order cancellation.
+     * @param string|null $href The URI of the getPayouts call request that produced the current page of the result set.
      *
      * @return self
      */
-    public function setCancellationId($cancellation_id)
+    public function setHref($href)
     {
-        $this->container['cancellation_id'] = $cancellation_id;
+        $this->container['href'] = $href;
 
         return $this;
     }
 
     /**
-     * Gets case_id
+     * Gets limit
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getCaseId()
+    public function getLimit()
     {
-        return $this->container['case_id'];
+        return $this->container['limit'];
     }
 
     /**
-     * Sets case_id
+     * Sets limit
      *
-     * @param string|null $case_id The unique identifier of a case filed against an order. This field is only applicable and returned if the charge is related to a case filed against an order.
+     * @param int|null $limit The maximum number of payouts that may be returned per page of the result set. The limit value can be passed in as a query parameter, or if omitted, its value defaults to 20. Note: If this is the last or only page of the result set, the page may contain fewer payouts than the limit value. To determine the number of pages in a result set, divide the total value (total number of payouts matching input criteria) by this limit value, and then round up to the next integer. For example, if the total value was 120 (120 total payouts) and the limit value was 50 (show 50 payouts per page), the total number of pages in the result set is three, so the seller would have to make three separate getPayouts calls to view all payouts matching the input criteria. Maximum: 200 Default: 20
      *
      * @return self
      */
-    public function setCaseId($case_id)
+    public function setLimit($limit)
     {
-        $this->container['case_id'] = $case_id;
+        $this->container['limit'] = $limit;
 
         return $this;
     }
 
     /**
-     * Gets charge_net_amount
+     * Gets next
      *
-     * @return \Ebay\Sell\Finances\Model\Amount|null
+     * @return string|null
      */
-    public function getChargeNetAmount()
+    public function getNext()
     {
-        return $this->container['charge_net_amount'];
+        return $this->container['next'];
     }
 
     /**
-     * Sets charge_net_amount
+     * Sets next
      *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $charge_net_amount charge_net_amount
+     * @param string|null $next The getPayouts call URI to use if you wish to view the next page of the result set. This field is only returned if there is a next page of results to view based on the current input criteria.
      *
      * @return self
      */
-    public function setChargeNetAmount($charge_net_amount)
+    public function setNext($next)
     {
-        $this->container['charge_net_amount'] = $charge_net_amount;
+        $this->container['next'] = $next;
 
         return $this;
     }
 
     /**
-     * Gets inquiry_id
+     * Gets offset
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getInquiryId()
+    public function getOffset()
     {
-        return $this->container['inquiry_id'];
+        return $this->container['offset'];
     }
 
     /**
-     * Sets inquiry_id
+     * Sets offset
      *
-     * @param string|null $inquiry_id The unique identifier of an Item Not Received (INR) inquiry filed against an order. This field is only applicable and returned if the charge is related to has an INR inquiry filed against the order.
+     * @param int|null $offset This integer value indicates the actual position that the first payout returned on the current page has in the results set. So, if you wanted to view the 11th payout of the result set, you would set the offset value in the request to 10. In the request, you can use the offset parameter in conjunction with the limit parameter to control the pagination of the output. For example, if offset is set to 30 and limit is set to 10, the call retrieves payouts 31 thru 40 from the resulting collection of payouts. Note: This feature employs a zero-based list, where the first item in the list has an offset of 0. Default: 0 (zero)
      *
      * @return self
      */
-    public function setInquiryId($inquiry_id)
+    public function setOffset($offset)
     {
-        $this->container['inquiry_id'] = $inquiry_id;
+        $this->container['offset'] = $offset;
 
         return $this;
     }
 
     /**
-     * Gets order_id
+     * Gets payouts
      *
-     * @return string|null
+     * @return \Ebay\Sell\Finances\Model\Payout[]|null
      */
-    public function getOrderId()
+    public function getPayouts()
     {
-        return $this->container['order_id'];
+        return $this->container['payouts'];
     }
 
     /**
-     * Sets order_id
+     * Sets payouts
      *
-     * @param string|null $order_id The unique identifier of the order that is associated with the charge.
+     * @param \Ebay\Sell\Finances\Model\Payout[]|null $payouts An array of one or more payouts that match the input criteria. Details for each payout include the unique identifier of the payout, the status of the payout, the amount of the payout, and the number of monetary transactions associated with the payout.
      *
      * @return self
      */
-    public function setOrderId($order_id)
+    public function setPayouts($payouts)
     {
-        $this->container['order_id'] = $order_id;
+        $this->container['payouts'] = $payouts;
 
         return $this;
     }
 
     /**
-     * Gets payment_dispute_id
+     * Gets prev
      *
      * @return string|null
      */
-    public function getPaymentDisputeId()
+    public function getPrev()
     {
-        return $this->container['payment_dispute_id'];
+        return $this->container['prev'];
     }
 
     /**
-     * Sets payment_dispute_id
+     * Sets prev
      *
-     * @param string|null $payment_dispute_id The unique identifier of a third-party payment dispute filed against an order. This occurs when the buyer files a dispute against the order with their payment provider, and then the dispute comes into eBay's system. This field is only applicable and returned if the charge is related to a third-party payment dispute filed against an order.
+     * @param string|null $prev The getPayouts call URI to use if you wish to view the previous page of the result set. This field is only returned if there is a previous page of results to view based on the current input criteria.
      *
      * @return self
      */
-    public function setPaymentDisputeId($payment_dispute_id)
+    public function setPrev($prev)
     {
-        $this->container['payment_dispute_id'] = $payment_dispute_id;
+        $this->container['prev'] = $prev;
 
         return $this;
     }
 
     /**
-     * Gets refund_id
+     * Gets total
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getRefundId()
+    public function getTotal()
     {
-        return $this->container['refund_id'];
+        return $this->container['total'];
     }
 
     /**
-     * Sets refund_id
+     * Sets total
      *
-     * @param string|null $refund_id The unique identifier of a buyer refund associated with the charge.
+     * @param int|null $total This integer value is the total number of payouts in the results set based on the current input criteria. Based on the total number of payouts that match the criteria, and on the limit and offset values, there may be additional pages in the results set.
      *
      * @return self
      */
-    public function setRefundId($refund_id)
+    public function setTotal($total)
     {
-        $this->container['refund_id'] = $refund_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets return_id
-     *
-     * @return string|null
-     */
-    public function getReturnId()
-    {
-        return $this->container['return_id'];
-    }
-
-    /**
-     * Sets return_id
-     *
-     * @param string|null $return_id The unique identifier of an order return. This field is only applicable and returned if the charge is related to an order that was returned by the buyer.
-     *
-     * @return self
-     */
-    public function setReturnId($return_id)
-    {
-        $this->container['return_id'] = $return_id;
+        $this->container['total'] = $total;
 
         return $this;
     }
@@ -460,7 +430,7 @@ class Charge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

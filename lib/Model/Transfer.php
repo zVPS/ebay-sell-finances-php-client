@@ -1,11 +1,11 @@
 <?php
 /**
- * TransferDetail
+ * Transfer
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * TransferDetail Class Doc Comment
+ * Transfer Class Doc Comment
  *
  * @category Class
- * @description This type is used by the &lt;b&gt;transferDetail&lt;/b&gt; container, which provides more details about the transfer and the charge(s) associated with the transfer.
- * @package  Ebay\Sell
+ * @description This type is the base response type used by &lt;code&gt;TRANSFER&lt;/code&gt; transaction type that is returned in the response.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
+class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TransferDetail';
+    protected static $openAPIModelName = 'Transfer';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,11 @@ class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'balance_adjustment' => '\Ebay\Sell\Finances\Model\BalanceAdjustment',
-        'charges' => '\Ebay\Sell\Finances\Model\Charge[]',
-        'total_charge_net_amount' => '\Ebay\Sell\Finances\Model\Amount'
+        'funding_source' => '\Ebay\Sell\Finances\Model\FundingSource',
+        'transaction_date' => 'string',
+        'transfer_amount' => '\Ebay\Sell\Finances\Model\Amount',
+        'transfer_detail' => '\Ebay\Sell\Finances\Model\TransferDetail',
+        'transfer_id' => 'string'
     ];
 
     /**
@@ -73,9 +75,11 @@ class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'balance_adjustment' => null,
-        'charges' => null,
-        'total_charge_net_amount' => null
+        'funding_source' => null,
+        'transaction_date' => null,
+        'transfer_amount' => null,
+        'transfer_detail' => null,
+        'transfer_id' => null
     ];
 
     /**
@@ -105,9 +109,11 @@ class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'balance_adjustment' => 'balanceAdjustment',
-        'charges' => 'charges',
-        'total_charge_net_amount' => 'totalChargeNetAmount'
+        'funding_source' => 'fundingSource',
+        'transaction_date' => 'transactionDate',
+        'transfer_amount' => 'transferAmount',
+        'transfer_detail' => 'transferDetail',
+        'transfer_id' => 'transferId'
     ];
 
     /**
@@ -116,9 +122,11 @@ class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'balance_adjustment' => 'setBalanceAdjustment',
-        'charges' => 'setCharges',
-        'total_charge_net_amount' => 'setTotalChargeNetAmount'
+        'funding_source' => 'setFundingSource',
+        'transaction_date' => 'setTransactionDate',
+        'transfer_amount' => 'setTransferAmount',
+        'transfer_detail' => 'setTransferDetail',
+        'transfer_id' => 'setTransferId'
     ];
 
     /**
@@ -127,9 +135,11 @@ class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'balance_adjustment' => 'getBalanceAdjustment',
-        'charges' => 'getCharges',
-        'total_charge_net_amount' => 'getTotalChargeNetAmount'
+        'funding_source' => 'getFundingSource',
+        'transaction_date' => 'getTransactionDate',
+        'transfer_amount' => 'getTransferAmount',
+        'transfer_detail' => 'getTransferDetail',
+        'transfer_id' => 'getTransferId'
     ];
 
     /**
@@ -189,9 +199,11 @@ class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['balance_adjustment'] = isset($data['balance_adjustment']) ? $data['balance_adjustment'] : null;
-        $this->container['charges'] = isset($data['charges']) ? $data['charges'] : null;
-        $this->container['total_charge_net_amount'] = isset($data['total_charge_net_amount']) ? $data['total_charge_net_amount'] : null;
+        $this->container['funding_source'] = $data['funding_source'] ?? null;
+        $this->container['transaction_date'] = $data['transaction_date'] ?? null;
+        $this->container['transfer_amount'] = $data['transfer_amount'] ?? null;
+        $this->container['transfer_detail'] = $data['transfer_detail'] ?? null;
+        $this->container['transfer_id'] = $data['transfer_id'] ?? null;
     }
 
     /**
@@ -219,73 +231,121 @@ class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets balance_adjustment
+     * Gets funding_source
      *
-     * @return \Ebay\Sell\Finances\Model\BalanceAdjustment|null
+     * @return \Ebay\Sell\Finances\Model\FundingSource|null
      */
-    public function getBalanceAdjustment()
+    public function getFundingSource()
     {
-        return $this->container['balance_adjustment'];
+        return $this->container['funding_source'];
     }
 
     /**
-     * Sets balance_adjustment
+     * Sets funding_source
      *
-     * @param \Ebay\Sell\Finances\Model\BalanceAdjustment|null $balance_adjustment balance_adjustment
+     * @param \Ebay\Sell\Finances\Model\FundingSource|null $funding_source funding_source
      *
      * @return self
      */
-    public function setBalanceAdjustment($balance_adjustment)
+    public function setFundingSource($funding_source)
     {
-        $this->container['balance_adjustment'] = $balance_adjustment;
+        $this->container['funding_source'] = $funding_source;
 
         return $this;
     }
 
     /**
-     * Gets charges
+     * Gets transaction_date
      *
-     * @return \Ebay\Sell\Finances\Model\Charge[]|null
+     * @return string|null
      */
-    public function getCharges()
+    public function getTransactionDate()
     {
-        return $this->container['charges'];
+        return $this->container['transaction_date'];
     }
 
     /**
-     * Sets charges
+     * Sets transaction_date
      *
-     * @param \Ebay\Sell\Finances\Model\Charge[]|null $charges This container is an array of one or more charges related to the transfer. Charges can be related to an order cancellation, order return, case, payment dispute, etc.
+     * @param string|null $transaction_date This timestamp indicates the date/time of the transfer. The following (UTC) format is used: YYYY-MM-DDTHH:MM:SS.SSSZ. For example, 2020-08-04T19:09:02.768Z
      *
      * @return self
      */
-    public function setCharges($charges)
+    public function setTransactionDate($transaction_date)
     {
-        $this->container['charges'] = $charges;
+        $this->container['transaction_date'] = $transaction_date;
 
         return $this;
     }
 
     /**
-     * Gets total_charge_net_amount
+     * Gets transfer_amount
      *
      * @return \Ebay\Sell\Finances\Model\Amount|null
      */
-    public function getTotalChargeNetAmount()
+    public function getTransferAmount()
     {
-        return $this->container['total_charge_net_amount'];
+        return $this->container['transfer_amount'];
     }
 
     /**
-     * Sets total_charge_net_amount
+     * Sets transfer_amount
      *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $total_charge_net_amount total_charge_net_amount
+     * @param \Ebay\Sell\Finances\Model\Amount|null $transfer_amount transfer_amount
      *
      * @return self
      */
-    public function setTotalChargeNetAmount($total_charge_net_amount)
+    public function setTransferAmount($transfer_amount)
     {
-        $this->container['total_charge_net_amount'] = $total_charge_net_amount;
+        $this->container['transfer_amount'] = $transfer_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets transfer_detail
+     *
+     * @return \Ebay\Sell\Finances\Model\TransferDetail|null
+     */
+    public function getTransferDetail()
+    {
+        return $this->container['transfer_detail'];
+    }
+
+    /**
+     * Sets transfer_detail
+     *
+     * @param \Ebay\Sell\Finances\Model\TransferDetail|null $transfer_detail transfer_detail
+     *
+     * @return self
+     */
+    public function setTransferDetail($transfer_detail)
+    {
+        $this->container['transfer_detail'] = $transfer_detail;
+
+        return $this;
+    }
+
+    /**
+     * Gets transfer_id
+     *
+     * @return string|null
+     */
+    public function getTransferId()
+    {
+        return $this->container['transfer_id'];
+    }
+
+    /**
+     * Sets transfer_id
+     *
+     * @param string|null $transfer_id The unique identifier of the TRANSFER transaction type. This is the same value that was passed into the end of the call URI.
+     *
+     * @return self
+     */
+    public function setTransferId($transfer_id)
+    {
+        $this->container['transfer_id'] = $transfer_id;
 
         return $this;
     }
@@ -310,7 +370,7 @@ class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

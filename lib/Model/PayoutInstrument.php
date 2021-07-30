@@ -5,7 +5,7 @@
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,14 +29,14 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
  * PayoutInstrument Class Doc Comment
  *
  * @category Class
  * @description This type provides details about the seller&#39;s account that received (or is scheduled to receive) a payout.
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
@@ -45,7 +45,7 @@ use \Ebay\Sell\ObjectSerializer;
  */
 class PayoutInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -189,9 +189,9 @@ class PayoutInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['account_last_four_digits'] = isset($data['account_last_four_digits']) ? $data['account_last_four_digits'] : null;
-        $this->container['instrument_type'] = isset($data['instrument_type']) ? $data['instrument_type'] : null;
-        $this->container['nickname'] = isset($data['nickname']) ? $data['nickname'] : null;
+        $this->container['account_last_four_digits'] = $data['account_last_four_digits'] ?? null;
+        $this->container['instrument_type'] = $data['instrument_type'] ?? null;
+        $this->container['nickname'] = $data['nickname'] ?? null;
     }
 
     /**
@@ -310,7 +310,7 @@ class PayoutInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

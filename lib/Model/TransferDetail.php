@@ -1,11 +1,11 @@
 <?php
 /**
- * PayoutSummaryResponse
+ * TransferDetail
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * PayoutSummaryResponse Class Doc Comment
+ * TransferDetail Class Doc Comment
  *
  * @category Class
- * @description This type is the base response type of the &lt;strong&gt;getPayoutSummary&lt;/strong&gt; method, and contains the total count of seller payouts (that match the input criteria), the total count of monetary transactions (order payment, buyer refunds, or seller credits) associated with those payouts, and the total value of those seller payouts.
- * @package  Ebay\Sell
+ * @description This type is used by the &lt;b&gt;transferDetail&lt;/b&gt; container, which provides more details about the transfer and the charge(s) associated with the transfer.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PayoutSummaryResponse';
+    protected static $openAPIModelName = 'TransferDetail';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,9 @@ class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'amount' => '\Ebay\Sell\Finances\Model\Amount',
-        'payout_count' => 'int',
-        'transaction_count' => 'int'
+        'balance_adjustment' => '\Ebay\Sell\Finances\Model\BalanceAdjustment',
+        'charges' => '\Ebay\Sell\Finances\Model\Charge[]',
+        'total_charge_net_amount' => '\Ebay\Sell\Finances\Model\Amount'
     ];
 
     /**
@@ -73,9 +73,9 @@ class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount' => null,
-        'payout_count' => null,
-        'transaction_count' => null
+        'balance_adjustment' => null,
+        'charges' => null,
+        'total_charge_net_amount' => null
     ];
 
     /**
@@ -105,9 +105,9 @@ class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'amount' => 'amount',
-        'payout_count' => 'payoutCount',
-        'transaction_count' => 'transactionCount'
+        'balance_adjustment' => 'balanceAdjustment',
+        'charges' => 'charges',
+        'total_charge_net_amount' => 'totalChargeNetAmount'
     ];
 
     /**
@@ -116,9 +116,9 @@ class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'amount' => 'setAmount',
-        'payout_count' => 'setPayoutCount',
-        'transaction_count' => 'setTransactionCount'
+        'balance_adjustment' => 'setBalanceAdjustment',
+        'charges' => 'setCharges',
+        'total_charge_net_amount' => 'setTotalChargeNetAmount'
     ];
 
     /**
@@ -127,9 +127,9 @@ class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'amount' => 'getAmount',
-        'payout_count' => 'getPayoutCount',
-        'transaction_count' => 'getTransactionCount'
+        'balance_adjustment' => 'getBalanceAdjustment',
+        'charges' => 'getCharges',
+        'total_charge_net_amount' => 'getTotalChargeNetAmount'
     ];
 
     /**
@@ -189,9 +189,9 @@ class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['payout_count'] = isset($data['payout_count']) ? $data['payout_count'] : null;
-        $this->container['transaction_count'] = isset($data['transaction_count']) ? $data['transaction_count'] : null;
+        $this->container['balance_adjustment'] = $data['balance_adjustment'] ?? null;
+        $this->container['charges'] = $data['charges'] ?? null;
+        $this->container['total_charge_net_amount'] = $data['total_charge_net_amount'] ?? null;
     }
 
     /**
@@ -219,73 +219,73 @@ class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets amount
+     * Gets balance_adjustment
+     *
+     * @return \Ebay\Sell\Finances\Model\BalanceAdjustment|null
+     */
+    public function getBalanceAdjustment()
+    {
+        return $this->container['balance_adjustment'];
+    }
+
+    /**
+     * Sets balance_adjustment
+     *
+     * @param \Ebay\Sell\Finances\Model\BalanceAdjustment|null $balance_adjustment balance_adjustment
+     *
+     * @return self
+     */
+    public function setBalanceAdjustment($balance_adjustment)
+    {
+        $this->container['balance_adjustment'] = $balance_adjustment;
+
+        return $this;
+    }
+
+    /**
+     * Gets charges
+     *
+     * @return \Ebay\Sell\Finances\Model\Charge[]|null
+     */
+    public function getCharges()
+    {
+        return $this->container['charges'];
+    }
+
+    /**
+     * Sets charges
+     *
+     * @param \Ebay\Sell\Finances\Model\Charge[]|null $charges This container is an array of one or more charges related to the transfer. Charges can be related to an order cancellation, order return, case, payment dispute, etc.
+     *
+     * @return self
+     */
+    public function setCharges($charges)
+    {
+        $this->container['charges'] = $charges;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_charge_net_amount
      *
      * @return \Ebay\Sell\Finances\Model\Amount|null
      */
-    public function getAmount()
+    public function getTotalChargeNetAmount()
     {
-        return $this->container['amount'];
+        return $this->container['total_charge_net_amount'];
     }
 
     /**
-     * Sets amount
+     * Sets total_charge_net_amount
      *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $amount amount
+     * @param \Ebay\Sell\Finances\Model\Amount|null $total_charge_net_amount total_charge_net_amount
      *
      * @return self
      */
-    public function setAmount($amount)
+    public function setTotalChargeNetAmount($total_charge_net_amount)
     {
-        $this->container['amount'] = $amount;
-
-        return $this;
-    }
-
-    /**
-     * Gets payout_count
-     *
-     * @return int|null
-     */
-    public function getPayoutCount()
-    {
-        return $this->container['payout_count'];
-    }
-
-    /**
-     * Sets payout_count
-     *
-     * @param int|null $payout_count This integer value indicates the total count of payouts to the seller that match the input criteria. This field is always returned, even if there are no payouts that match the input criteria (its value will show 0).
-     *
-     * @return self
-     */
-    public function setPayoutCount($payout_count)
-    {
-        $this->container['payout_count'] = $payout_count;
-
-        return $this;
-    }
-
-    /**
-     * Gets transaction_count
-     *
-     * @return int|null
-     */
-    public function getTransactionCount()
-    {
-        return $this->container['transaction_count'];
-    }
-
-    /**
-     * Sets transaction_count
-     *
-     * @param int|null $transaction_count This integer value indicates the total count of monetary transactions (order payments, buyer refunds, and seller credits) associated with the payouts that match the input criteria. This field is always returned, even if there are no payouts that match the input criteria (its value will show 0). If there is at least one payout that matches the input criteria, the value in this field will be at least 1.
-     *
-     * @return self
-     */
-    public function setTransactionCount($transaction_count)
-    {
-        $this->container['transaction_count'] = $transaction_count;
+        $this->container['total_charge_net_amount'] = $total_charge_net_amount;
 
         return $this;
     }
@@ -310,7 +310,7 @@ class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

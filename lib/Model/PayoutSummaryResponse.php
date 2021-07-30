@@ -1,11 +1,11 @@
 <?php
 /**
- * Amount
+ * PayoutSummaryResponse
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * Amount Class Doc Comment
+ * PayoutSummaryResponse Class Doc Comment
  *
  * @category Class
- * @description This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.
- * @package  Ebay\Sell
+ * @description This type is the base response type of the &lt;strong&gt;getPayoutSummary&lt;/strong&gt; method, and contains the total count of seller payouts (that match the input criteria), the total count of monetary transactions (order payment, buyer refunds, or seller credits) associated with those payouts, and the total value of those seller payouts.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
+class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Amount';
+    protected static $openAPIModelName = 'PayoutSummaryResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,11 +60,9 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'converted_from_currency' => 'string',
-        'converted_from_value' => 'string',
-        'exchange_rate' => 'string',
-        'value' => 'string'
+        'amount' => '\Ebay\Sell\Finances\Model\Amount',
+        'payout_count' => 'int',
+        'transaction_count' => 'int'
     ];
 
     /**
@@ -75,11 +73,9 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'converted_from_currency' => null,
-        'converted_from_value' => null,
-        'exchange_rate' => null,
-        'value' => null
+        'amount' => null,
+        'payout_count' => null,
+        'transaction_count' => null
     ];
 
     /**
@@ -109,11 +105,9 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'converted_from_currency' => 'convertedFromCurrency',
-        'converted_from_value' => 'convertedFromValue',
-        'exchange_rate' => 'exchangeRate',
-        'value' => 'value'
+        'amount' => 'amount',
+        'payout_count' => 'payoutCount',
+        'transaction_count' => 'transactionCount'
     ];
 
     /**
@@ -122,11 +116,9 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'converted_from_currency' => 'setConvertedFromCurrency',
-        'converted_from_value' => 'setConvertedFromValue',
-        'exchange_rate' => 'setExchangeRate',
-        'value' => 'setValue'
+        'amount' => 'setAmount',
+        'payout_count' => 'setPayoutCount',
+        'transaction_count' => 'setTransactionCount'
     ];
 
     /**
@@ -135,11 +127,9 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'converted_from_currency' => 'getConvertedFromCurrency',
-        'converted_from_value' => 'getConvertedFromValue',
-        'exchange_rate' => 'getExchangeRate',
-        'value' => 'getValue'
+        'amount' => 'getAmount',
+        'payout_count' => 'getPayoutCount',
+        'transaction_count' => 'getTransactionCount'
     ];
 
     /**
@@ -199,11 +189,9 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
-        $this->container['converted_from_currency'] = isset($data['converted_from_currency']) ? $data['converted_from_currency'] : null;
-        $this->container['converted_from_value'] = isset($data['converted_from_value']) ? $data['converted_from_value'] : null;
-        $this->container['exchange_rate'] = isset($data['exchange_rate']) ? $data['exchange_rate'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['amount'] = $data['amount'] ?? null;
+        $this->container['payout_count'] = $data['payout_count'] ?? null;
+        $this->container['transaction_count'] = $data['transaction_count'] ?? null;
     }
 
     /**
@@ -231,121 +219,73 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets amount
      *
-     * @return string|null
+     * @return \Ebay\Sell\Finances\Model\Amount|null
      */
-    public function getCurrency()
+    public function getAmount()
     {
-        return $this->container['currency'];
+        return $this->container['amount'];
     }
 
     /**
-     * Sets currency
+     * Sets amount
      *
-     * @param string|null $currency A three-letter ISO 4217 code that indicates the currency of the amount in the value field. This field is always returned with any container using Amount type. Default: The currency of the authenticated user's country. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/finances/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
+     * @param \Ebay\Sell\Finances\Model\Amount|null $amount amount
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setAmount($amount)
     {
-        $this->container['currency'] = $currency;
+        $this->container['amount'] = $amount;
 
         return $this;
     }
 
     /**
-     * Gets converted_from_currency
+     * Gets payout_count
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getConvertedFromCurrency()
+    public function getPayoutCount()
     {
-        return $this->container['converted_from_currency'];
+        return $this->container['payout_count'];
     }
 
     /**
-     * Sets converted_from_currency
+     * Sets payout_count
      *
-     * @param string|null $converted_from_currency The three-letter ISO 4217 code representing the currency of the amount in the convertedFromValue field. This value is the pre-conversion currency. This field is only returned if/when currency conversion was applied by eBay. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/finances/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
+     * @param int|null $payout_count This integer value indicates the total count of payouts to the seller that match the input criteria. This field is always returned, even if there are no payouts that match the input criteria (its value will show 0).
      *
      * @return self
      */
-    public function setConvertedFromCurrency($converted_from_currency)
+    public function setPayoutCount($payout_count)
     {
-        $this->container['converted_from_currency'] = $converted_from_currency;
+        $this->container['payout_count'] = $payout_count;
 
         return $this;
     }
 
     /**
-     * Gets converted_from_value
+     * Gets transaction_count
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getConvertedFromValue()
+    public function getTransactionCount()
     {
-        return $this->container['converted_from_value'];
+        return $this->container['transaction_count'];
     }
 
     /**
-     * Sets converted_from_value
+     * Sets transaction_count
      *
-     * @param string|null $converted_from_value The monetary amount before any conversion is performed, in the currency specified by the convertedFromCurrency field. This value is the pre-conversion amount. The value field contains the converted amount of this value, in the currency specified by the currency field. This field is only returned if/when currency conversion was applied by eBay.
+     * @param int|null $transaction_count This integer value indicates the total count of monetary transactions (order payments, buyer refunds, and seller credits) associated with the payouts that match the input criteria. This field is always returned, even if there are no payouts that match the input criteria (its value will show 0). If there is at least one payout that matches the input criteria, the value in this field will be at least 1.
      *
      * @return self
      */
-    public function setConvertedFromValue($converted_from_value)
+    public function setTransactionCount($transaction_count)
     {
-        $this->container['converted_from_value'] = $converted_from_value;
-
-        return $this;
-    }
-
-    /**
-     * Gets exchange_rate
-     *
-     * @return string|null
-     */
-    public function getExchangeRate()
-    {
-        return $this->container['exchange_rate'];
-    }
-
-    /**
-     * Sets exchange_rate
-     *
-     * @param string|null $exchange_rate The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the value field from the dollar value in the convertedFromValue field. This field is only returned when eBay does a currency version, and a currency conversion is generally needed if the buyer is viewing, or has purchased an item on an international site. This field is only returned if/when currency conversion was applied by eBay.
-     *
-     * @return self
-     */
-    public function setExchangeRate($exchange_rate)
-    {
-        $this->container['exchange_rate'] = $exchange_rate;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     *
-     * @return string|null
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param string|null $value The monetary amount, in the currency specified by the currency field. This field is always returned with any container using Amount type.
-     *
-     * @return self
-     */
-    public function setValue($value)
-    {
-        $this->container['value'] = $value;
+        $this->container['transaction_count'] = $transaction_count;
 
         return $this;
     }
@@ -370,7 +310,7 @@ class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

@@ -4,7 +4,7 @@
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace Ebay\Sell\Finances;
+namespace Ebay\Sell\Finances\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -33,16 +33,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use Ebay\Sell\ApiException;
-use Ebay\Sell\Configuration;
-use Ebay\Sell\HeaderSelector;
-use Ebay\Sell\ObjectSerializer;
+use Ebay\Sell\Finances\ApiException;
+use Ebay\Sell\Finances\Configuration;
+use Ebay\Sell\Finances\HeaderSelector;
+use Ebay\Sell\Finances\ObjectSerializer;
 
 /**
  * SellerFundsSummaryApi Class Doc Comment
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -90,9 +90,8 @@ class SellerFundsSummaryApi
      * Set the host index
      *
      * @param int $hostIndex Host index (required)
-     * @return void
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +118,7 @@ class SellerFundsSummaryApi
      * Operation getSellerFundsSummary
      *
      *
-     * @throws \Ebay\Sell\ApiException on non-2xx response
+     * @throws \Ebay\Sell\Finances\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Ebay\Sell\Finances\Model\SellerFundsSummaryResponse
      */
@@ -133,7 +132,7 @@ class SellerFundsSummaryApi
      * Operation getSellerFundsSummaryWithHttpInfo
      *
      *
-     * @throws \Ebay\Sell\ApiException on non-2xx response
+     * @throws \Ebay\Sell\Finances\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Ebay\Sell\Finances\Model\SellerFundsSummaryResponse, HTTP status code, HTTP response headers (array of strings)
      */

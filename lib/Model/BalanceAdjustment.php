@@ -1,11 +1,11 @@
 <?php
 /**
- * Buyer
+ * BalanceAdjustment
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * Buyer Class Doc Comment
+ * BalanceAdjustment Class Doc Comment
  *
  * @category Class
- * @description This type is used to express details about the buyer associated with an order. At this time, the only field in this type is the eBay user ID of the buyer, but more fields may get added at a later date.
- * @package  Ebay\Sell
+ * @description This type is used by the &lt;b&gt;balanceAdjustment&lt;/b&gt; container, which shows the seller payout balance that will be applied toward the charges outlined in the &lt;b&gt;charges&lt;/b&gt; array.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
+class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Buyer';
+    protected static $openAPIModelName = 'BalanceAdjustment';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,7 +60,8 @@ class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'username' => 'string'
+        'adjustment_amount' => '\Ebay\Sell\Finances\Model\Amount',
+        'adjustment_type' => 'string'
     ];
 
     /**
@@ -71,7 +72,8 @@ class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'username' => null
+        'adjustment_amount' => null,
+        'adjustment_type' => null
     ];
 
     /**
@@ -101,7 +103,8 @@ class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'username' => 'username'
+        'adjustment_amount' => 'adjustmentAmount',
+        'adjustment_type' => 'adjustmentType'
     ];
 
     /**
@@ -110,7 +113,8 @@ class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'username' => 'setUsername'
+        'adjustment_amount' => 'setAdjustmentAmount',
+        'adjustment_type' => 'setAdjustmentType'
     ];
 
     /**
@@ -119,7 +123,8 @@ class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'username' => 'getUsername'
+        'adjustment_amount' => 'getAdjustmentAmount',
+        'adjustment_type' => 'getAdjustmentType'
     ];
 
     /**
@@ -179,7 +184,8 @@ class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['username'] = isset($data['username']) ? $data['username'] : null;
+        $this->container['adjustment_amount'] = $data['adjustment_amount'] ?? null;
+        $this->container['adjustment_type'] = $data['adjustment_type'] ?? null;
     }
 
     /**
@@ -207,25 +213,49 @@ class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets username
+     * Gets adjustment_amount
      *
-     * @return string|null
+     * @return \Ebay\Sell\Finances\Model\Amount|null
      */
-    public function getUsername()
+    public function getAdjustmentAmount()
     {
-        return $this->container['username'];
+        return $this->container['adjustment_amount'];
     }
 
     /**
-     * Sets username
+     * Sets adjustment_amount
      *
-     * @param string|null $username The eBay user ID of the order's buyer.
+     * @param \Ebay\Sell\Finances\Model\Amount|null $adjustment_amount adjustment_amount
      *
      * @return self
      */
-    public function setUsername($username)
+    public function setAdjustmentAmount($adjustment_amount)
     {
-        $this->container['username'] = $username;
+        $this->container['adjustment_amount'] = $adjustment_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets adjustment_type
+     *
+     * @return string|null
+     */
+    public function getAdjustmentType()
+    {
+        return $this->container['adjustment_type'];
+    }
+
+    /**
+     * Sets adjustment_type
+     *
+     * @param string|null $adjustment_type The enumeration value returned here indicates if the charge is a DEBIT or a CREDIT to the seller. Generally, all transfer transaction types are going to be DEBIT, since the money is being tranferred from the seller to eBay. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum'>eBay API documentation</a>
+     *
+     * @return self
+     */
+    public function setAdjustmentType($adjustment_type)
+    {
+        $this->container['adjustment_type'] = $adjustment_type;
 
         return $this;
     }
@@ -250,7 +280,7 @@ class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

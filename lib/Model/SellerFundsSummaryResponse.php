@@ -1,11 +1,11 @@
 <?php
 /**
- * BalanceAdjustment
+ * SellerFundsSummaryResponse
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * BalanceAdjustment Class Doc Comment
+ * SellerFundsSummaryResponse Class Doc Comment
  *
  * @category Class
- * @description This type is used by the &lt;b&gt;balanceAdjustment&lt;/b&gt; container, which shows the seller payout balance that will be applied toward the charges outlined in the &lt;b&gt;charges&lt;/b&gt; array.
- * @package  Ebay\Sell
+ * @description This type is used by the response payload of the &lt;strong&gt;getSellerFundsSummary&lt;/strong&gt; method. All of the funds returned in  &lt;strong&gt;getSellerFundsSummary&lt;/strong&gt; are funds that have not yet been paid to the seller through a seller payout. If there are no funds that are pending, on hold, or being processed for the seller&#39;s account, no response payload is returned, and an http status code of &lt;code&gt;204 - No Content&lt;/code&gt; is returned instead.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
+class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BalanceAdjustment';
+    protected static $openAPIModelName = 'SellerFundsSummaryResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,10 @@ class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'adjustment_amount' => '\Ebay\Sell\Finances\Model\Amount',
-        'adjustment_type' => 'string'
+        'available_funds' => '\Ebay\Sell\Finances\Model\Amount',
+        'funds_on_hold' => '\Ebay\Sell\Finances\Model\Amount',
+        'processing_funds' => '\Ebay\Sell\Finances\Model\Amount',
+        'total_funds' => '\Ebay\Sell\Finances\Model\Amount'
     ];
 
     /**
@@ -72,8 +74,10 @@ class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'adjustment_amount' => null,
-        'adjustment_type' => null
+        'available_funds' => null,
+        'funds_on_hold' => null,
+        'processing_funds' => null,
+        'total_funds' => null
     ];
 
     /**
@@ -103,8 +107,10 @@ class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'adjustment_amount' => 'adjustmentAmount',
-        'adjustment_type' => 'adjustmentType'
+        'available_funds' => 'availableFunds',
+        'funds_on_hold' => 'fundsOnHold',
+        'processing_funds' => 'processingFunds',
+        'total_funds' => 'totalFunds'
     ];
 
     /**
@@ -113,8 +119,10 @@ class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'adjustment_amount' => 'setAdjustmentAmount',
-        'adjustment_type' => 'setAdjustmentType'
+        'available_funds' => 'setAvailableFunds',
+        'funds_on_hold' => 'setFundsOnHold',
+        'processing_funds' => 'setProcessingFunds',
+        'total_funds' => 'setTotalFunds'
     ];
 
     /**
@@ -123,8 +131,10 @@ class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'adjustment_amount' => 'getAdjustmentAmount',
-        'adjustment_type' => 'getAdjustmentType'
+        'available_funds' => 'getAvailableFunds',
+        'funds_on_hold' => 'getFundsOnHold',
+        'processing_funds' => 'getProcessingFunds',
+        'total_funds' => 'getTotalFunds'
     ];
 
     /**
@@ -184,8 +194,10 @@ class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['adjustment_amount'] = isset($data['adjustment_amount']) ? $data['adjustment_amount'] : null;
-        $this->container['adjustment_type'] = isset($data['adjustment_type']) ? $data['adjustment_type'] : null;
+        $this->container['available_funds'] = $data['available_funds'] ?? null;
+        $this->container['funds_on_hold'] = $data['funds_on_hold'] ?? null;
+        $this->container['processing_funds'] = $data['processing_funds'] ?? null;
+        $this->container['total_funds'] = $data['total_funds'] ?? null;
     }
 
     /**
@@ -213,49 +225,97 @@ class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets adjustment_amount
+     * Gets available_funds
      *
      * @return \Ebay\Sell\Finances\Model\Amount|null
      */
-    public function getAdjustmentAmount()
+    public function getAvailableFunds()
     {
-        return $this->container['adjustment_amount'];
+        return $this->container['available_funds'];
     }
 
     /**
-     * Sets adjustment_amount
+     * Sets available_funds
      *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $adjustment_amount adjustment_amount
+     * @param \Ebay\Sell\Finances\Model\Amount|null $available_funds available_funds
      *
      * @return self
      */
-    public function setAdjustmentAmount($adjustment_amount)
+    public function setAvailableFunds($available_funds)
     {
-        $this->container['adjustment_amount'] = $adjustment_amount;
+        $this->container['available_funds'] = $available_funds;
 
         return $this;
     }
 
     /**
-     * Gets adjustment_type
+     * Gets funds_on_hold
      *
-     * @return string|null
+     * @return \Ebay\Sell\Finances\Model\Amount|null
      */
-    public function getAdjustmentType()
+    public function getFundsOnHold()
     {
-        return $this->container['adjustment_type'];
+        return $this->container['funds_on_hold'];
     }
 
     /**
-     * Sets adjustment_type
+     * Sets funds_on_hold
      *
-     * @param string|null $adjustment_type The enumeration value returned here indicates if the charge is a DEBIT or a CREDIT to the seller. Generally, all transfer transaction types are going to be DEBIT, since the money is being tranferred from the seller to eBay. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/finances/types/pay:BookingEntryEnum'>eBay API documentation</a>
+     * @param \Ebay\Sell\Finances\Model\Amount|null $funds_on_hold funds_on_hold
      *
      * @return self
      */
-    public function setAdjustmentType($adjustment_type)
+    public function setFundsOnHold($funds_on_hold)
     {
-        $this->container['adjustment_type'] = $adjustment_type;
+        $this->container['funds_on_hold'] = $funds_on_hold;
+
+        return $this;
+    }
+
+    /**
+     * Gets processing_funds
+     *
+     * @return \Ebay\Sell\Finances\Model\Amount|null
+     */
+    public function getProcessingFunds()
+    {
+        return $this->container['processing_funds'];
+    }
+
+    /**
+     * Sets processing_funds
+     *
+     * @param \Ebay\Sell\Finances\Model\Amount|null $processing_funds processing_funds
+     *
+     * @return self
+     */
+    public function setProcessingFunds($processing_funds)
+    {
+        $this->container['processing_funds'] = $processing_funds;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_funds
+     *
+     * @return \Ebay\Sell\Finances\Model\Amount|null
+     */
+    public function getTotalFunds()
+    {
+        return $this->container['total_funds'];
+    }
+
+    /**
+     * Sets total_funds
+     *
+     * @param \Ebay\Sell\Finances\Model\Amount|null $total_funds total_funds
+     *
+     * @return self
+     */
+    public function setTotalFunds($total_funds)
+    {
+        $this->container['total_funds'] = $total_funds;
 
         return $this;
     }
@@ -280,7 +340,7 @@ class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

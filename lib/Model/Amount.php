@@ -1,11 +1,11 @@
 <?php
 /**
- * Fee
+ * Amount
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * Fee Class Doc Comment
+ * Amount Class Doc Comment
  *
  * @category Class
- * @description This type is used to display fees that are automatically deducted from seller payouts.
- * @package  Ebay\Sell
+ * @description This type is used to express the dollar value and currency used for any transaction retrieved with the &lt;strong&gt;Finances API&lt;/strong&gt;, including an order total, a seller payout, a buyer refund, or a seller credit.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Fee implements ModelInterface, ArrayAccess, \JsonSerializable
+class Amount implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Fee';
+    protected static $openAPIModelName = 'Amount';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,11 @@ class Fee implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'amount' => '\Ebay\Sell\Finances\Model\Amount',
-        'fee_memo' => 'string',
-        'fee_type' => 'string'
+        'currency' => 'string',
+        'converted_from_currency' => 'string',
+        'converted_from_value' => 'string',
+        'exchange_rate' => 'string',
+        'value' => 'string'
     ];
 
     /**
@@ -73,9 +75,11 @@ class Fee implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount' => null,
-        'fee_memo' => null,
-        'fee_type' => null
+        'currency' => null,
+        'converted_from_currency' => null,
+        'converted_from_value' => null,
+        'exchange_rate' => null,
+        'value' => null
     ];
 
     /**
@@ -105,9 +109,11 @@ class Fee implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'amount' => 'amount',
-        'fee_memo' => 'feeMemo',
-        'fee_type' => 'feeType'
+        'currency' => 'currency',
+        'converted_from_currency' => 'convertedFromCurrency',
+        'converted_from_value' => 'convertedFromValue',
+        'exchange_rate' => 'exchangeRate',
+        'value' => 'value'
     ];
 
     /**
@@ -116,9 +122,11 @@ class Fee implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'amount' => 'setAmount',
-        'fee_memo' => 'setFeeMemo',
-        'fee_type' => 'setFeeType'
+        'currency' => 'setCurrency',
+        'converted_from_currency' => 'setConvertedFromCurrency',
+        'converted_from_value' => 'setConvertedFromValue',
+        'exchange_rate' => 'setExchangeRate',
+        'value' => 'setValue'
     ];
 
     /**
@@ -127,9 +135,11 @@ class Fee implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'amount' => 'getAmount',
-        'fee_memo' => 'getFeeMemo',
-        'fee_type' => 'getFeeType'
+        'currency' => 'getCurrency',
+        'converted_from_currency' => 'getConvertedFromCurrency',
+        'converted_from_value' => 'getConvertedFromValue',
+        'exchange_rate' => 'getExchangeRate',
+        'value' => 'getValue'
     ];
 
     /**
@@ -189,9 +199,11 @@ class Fee implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
-        $this->container['fee_memo'] = isset($data['fee_memo']) ? $data['fee_memo'] : null;
-        $this->container['fee_type'] = isset($data['fee_type']) ? $data['fee_type'] : null;
+        $this->container['currency'] = $data['currency'] ?? null;
+        $this->container['converted_from_currency'] = $data['converted_from_currency'] ?? null;
+        $this->container['converted_from_value'] = $data['converted_from_value'] ?? null;
+        $this->container['exchange_rate'] = $data['exchange_rate'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
     }
 
     /**
@@ -219,73 +231,121 @@ class Fee implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets amount
+     * Gets currency
      *
-     * @return \Ebay\Sell\Finances\Model\Amount|null
+     * @return string|null
      */
-    public function getAmount()
+    public function getCurrency()
     {
-        return $this->container['amount'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets amount
+     * Sets currency
      *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $amount amount
+     * @param string|null $currency A three-letter ISO 4217 code that indicates the currency of the amount in the value field. This field is always returned with any container using Amount type. Default: The currency of the authenticated user's country. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/finances/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
      *
      * @return self
      */
-    public function setAmount($amount)
+    public function setCurrency($currency)
     {
-        $this->container['amount'] = $amount;
+        $this->container['currency'] = $currency;
 
         return $this;
     }
 
     /**
-     * Gets fee_memo
+     * Gets converted_from_currency
      *
      * @return string|null
      */
-    public function getFeeMemo()
+    public function getConvertedFromCurrency()
     {
-        return $this->container['fee_memo'];
+        return $this->container['converted_from_currency'];
     }
 
     /**
-     * Sets fee_memo
+     * Sets converted_from_currency
      *
-     * @param string|null $fee_memo A description of the fee that was deducted from the seller payout.
+     * @param string|null $converted_from_currency The three-letter ISO 4217 code representing the currency of the amount in the convertedFromValue field. This value is the pre-conversion currency. This field is only returned if/when currency conversion was applied by eBay. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/finances/types/ba:CurrencyCodeEnum'>eBay API documentation</a>
      *
      * @return self
      */
-    public function setFeeMemo($fee_memo)
+    public function setConvertedFromCurrency($converted_from_currency)
     {
-        $this->container['fee_memo'] = $fee_memo;
+        $this->container['converted_from_currency'] = $converted_from_currency;
 
         return $this;
     }
 
     /**
-     * Gets fee_type
+     * Gets converted_from_value
      *
      * @return string|null
      */
-    public function getFeeType()
+    public function getConvertedFromValue()
     {
-        return $this->container['fee_type'];
+        return $this->container['converted_from_value'];
     }
 
     /**
-     * Sets fee_type
+     * Sets converted_from_value
      *
-     * @param string|null $fee_type The enumeration value returned here indicates the type of fee that was deducted from the seller payout. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/finances/types/api:FeeTypeEnum'>eBay API documentation</a>
+     * @param string|null $converted_from_value The monetary amount before any conversion is performed, in the currency specified by the convertedFromCurrency field. This value is the pre-conversion amount. The value field contains the converted amount of this value, in the currency specified by the currency field. This field is only returned if/when currency conversion was applied by eBay.
      *
      * @return self
      */
-    public function setFeeType($fee_type)
+    public function setConvertedFromValue($converted_from_value)
     {
-        $this->container['fee_type'] = $fee_type;
+        $this->container['converted_from_value'] = $converted_from_value;
+
+        return $this;
+    }
+
+    /**
+     * Gets exchange_rate
+     *
+     * @return string|null
+     */
+    public function getExchangeRate()
+    {
+        return $this->container['exchange_rate'];
+    }
+
+    /**
+     * Sets exchange_rate
+     *
+     * @param string|null $exchange_rate The exchange rate used for the monetary conversion. This field shows the exchange rate used to convert the dollar value in the value field from the dollar value in the convertedFromValue field. This field is only returned when eBay does a currency version, and a currency conversion is generally needed if the buyer is viewing, or has purchased an item on an international site. This field is only returned if/when currency conversion was applied by eBay.
+     *
+     * @return self
+     */
+    public function setExchangeRate($exchange_rate)
+    {
+        $this->container['exchange_rate'] = $exchange_rate;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     *
+     * @return string|null
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param string|null $value The monetary amount, in the currency specified by the currency field. This field is always returned with any container using Amount type.
+     *
+     * @return self
+     */
+    public function setValue($value)
+    {
+        $this->container['value'] = $value;
 
         return $this;
     }
@@ -310,7 +370,7 @@ class Fee implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

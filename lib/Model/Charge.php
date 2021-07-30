@@ -1,11 +1,11 @@
 <?php
 /**
- * Transactions
+ * Charge
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * Transactions Class Doc Comment
+ * Charge Class Doc Comment
  *
  * @category Class
- * @description This is the base response type of the &lt;b&gt;getTransactions&lt;/b&gt; method. The &lt;b&gt;getTransactions&lt;/b&gt; response includes details on one or more monetary transactions that match the input criteria, as well as pagination data.
- * @package  Ebay\Sell
+ * @description This type is used by the &lt;b&gt;charge&lt;/b&gt; container, which is an array of one or more charges related to the transfer.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Transactions implements ModelInterface, ArrayAccess, \JsonSerializable
+class Charge implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Transactions';
+    protected static $openAPIModelName = 'Charge';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,13 +60,14 @@ class Transactions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'href' => 'string',
-        'limit' => 'int',
-        'next' => 'string',
-        'offset' => 'int',
-        'prev' => 'string',
-        'total' => 'int',
-        'transactions' => '\Ebay\Sell\Finances\Model\Transaction[]'
+        'cancellation_id' => 'string',
+        'case_id' => 'string',
+        'charge_net_amount' => '\Ebay\Sell\Finances\Model\Amount',
+        'inquiry_id' => 'string',
+        'order_id' => 'string',
+        'payment_dispute_id' => 'string',
+        'refund_id' => 'string',
+        'return_id' => 'string'
     ];
 
     /**
@@ -77,13 +78,14 @@ class Transactions implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'href' => null,
-        'limit' => null,
-        'next' => null,
-        'offset' => null,
-        'prev' => null,
-        'total' => null,
-        'transactions' => null
+        'cancellation_id' => null,
+        'case_id' => null,
+        'charge_net_amount' => null,
+        'inquiry_id' => null,
+        'order_id' => null,
+        'payment_dispute_id' => null,
+        'refund_id' => null,
+        'return_id' => null
     ];
 
     /**
@@ -113,13 +115,14 @@ class Transactions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'href' => 'href',
-        'limit' => 'limit',
-        'next' => 'next',
-        'offset' => 'offset',
-        'prev' => 'prev',
-        'total' => 'total',
-        'transactions' => 'transactions'
+        'cancellation_id' => 'cancellationId',
+        'case_id' => 'caseId',
+        'charge_net_amount' => 'chargeNetAmount',
+        'inquiry_id' => 'inquiryId',
+        'order_id' => 'orderId',
+        'payment_dispute_id' => 'paymentDisputeId',
+        'refund_id' => 'refundId',
+        'return_id' => 'returnId'
     ];
 
     /**
@@ -128,13 +131,14 @@ class Transactions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'href' => 'setHref',
-        'limit' => 'setLimit',
-        'next' => 'setNext',
-        'offset' => 'setOffset',
-        'prev' => 'setPrev',
-        'total' => 'setTotal',
-        'transactions' => 'setTransactions'
+        'cancellation_id' => 'setCancellationId',
+        'case_id' => 'setCaseId',
+        'charge_net_amount' => 'setChargeNetAmount',
+        'inquiry_id' => 'setInquiryId',
+        'order_id' => 'setOrderId',
+        'payment_dispute_id' => 'setPaymentDisputeId',
+        'refund_id' => 'setRefundId',
+        'return_id' => 'setReturnId'
     ];
 
     /**
@@ -143,13 +147,14 @@ class Transactions implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'href' => 'getHref',
-        'limit' => 'getLimit',
-        'next' => 'getNext',
-        'offset' => 'getOffset',
-        'prev' => 'getPrev',
-        'total' => 'getTotal',
-        'transactions' => 'getTransactions'
+        'cancellation_id' => 'getCancellationId',
+        'case_id' => 'getCaseId',
+        'charge_net_amount' => 'getChargeNetAmount',
+        'inquiry_id' => 'getInquiryId',
+        'order_id' => 'getOrderId',
+        'payment_dispute_id' => 'getPaymentDisputeId',
+        'refund_id' => 'getRefundId',
+        'return_id' => 'getReturnId'
     ];
 
     /**
@@ -209,13 +214,14 @@ class Transactions implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['href'] = isset($data['href']) ? $data['href'] : null;
-        $this->container['limit'] = isset($data['limit']) ? $data['limit'] : null;
-        $this->container['next'] = isset($data['next']) ? $data['next'] : null;
-        $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
-        $this->container['prev'] = isset($data['prev']) ? $data['prev'] : null;
-        $this->container['total'] = isset($data['total']) ? $data['total'] : null;
-        $this->container['transactions'] = isset($data['transactions']) ? $data['transactions'] : null;
+        $this->container['cancellation_id'] = $data['cancellation_id'] ?? null;
+        $this->container['case_id'] = $data['case_id'] ?? null;
+        $this->container['charge_net_amount'] = $data['charge_net_amount'] ?? null;
+        $this->container['inquiry_id'] = $data['inquiry_id'] ?? null;
+        $this->container['order_id'] = $data['order_id'] ?? null;
+        $this->container['payment_dispute_id'] = $data['payment_dispute_id'] ?? null;
+        $this->container['refund_id'] = $data['refund_id'] ?? null;
+        $this->container['return_id'] = $data['return_id'] ?? null;
     }
 
     /**
@@ -243,169 +249,193 @@ class Transactions implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets href
+     * Gets cancellation_id
      *
      * @return string|null
      */
-    public function getHref()
+    public function getCancellationId()
     {
-        return $this->container['href'];
+        return $this->container['cancellation_id'];
     }
 
     /**
-     * Sets href
+     * Sets cancellation_id
      *
-     * @param string|null $href The URI of the getTransactions method request that produced the current page of the result set.
+     * @param string|null $cancellation_id The unique identifier of an order cancellation. This field is only applicable and returned if the charge is related to an order cancellation.
      *
      * @return self
      */
-    public function setHref($href)
+    public function setCancellationId($cancellation_id)
     {
-        $this->container['href'] = $href;
+        $this->container['cancellation_id'] = $cancellation_id;
 
         return $this;
     }
 
     /**
-     * Gets limit
-     *
-     * @return int|null
-     */
-    public function getLimit()
-    {
-        return $this->container['limit'];
-    }
-
-    /**
-     * Sets limit
-     *
-     * @param int|null $limit The maximum number of monetary transactions that may be returned per page of the result set. The limit value can be passed in as a query parameter, or if omitted, its value defaults to 20. Note: If this is the last or only page of the result set, the page may contain fewer monetary transactions than the limit value. To determine the number of pages in a result set, divide the total value (total number of monetary transactions matching input criteria) by this limit value, and then round up to the next integer. For example, if the total value was 120 (120 total monetary transactions) and the limit value was 50 (show 50 monetary transactions per page), the total number of pages in the result set is three, so the seller would have to make three separate getTransactions calls to view all monetary transactions matching the input criteria. Maximum: 200 Default: 20
-     *
-     * @return self
-     */
-    public function setLimit($limit)
-    {
-        $this->container['limit'] = $limit;
-
-        return $this;
-    }
-
-    /**
-     * Gets next
+     * Gets case_id
      *
      * @return string|null
      */
-    public function getNext()
+    public function getCaseId()
     {
-        return $this->container['next'];
+        return $this->container['case_id'];
     }
 
     /**
-     * Sets next
+     * Sets case_id
      *
-     * @param string|null $next The getTransactions method URI to use if you wish to view the next page of the result set. This field is only returned if there is a next page of results to view based on the current input criteria.
+     * @param string|null $case_id The unique identifier of a case filed against an order. This field is only applicable and returned if the charge is related to a case filed against an order.
      *
      * @return self
      */
-    public function setNext($next)
+    public function setCaseId($case_id)
     {
-        $this->container['next'] = $next;
+        $this->container['case_id'] = $case_id;
 
         return $this;
     }
 
     /**
-     * Gets offset
+     * Gets charge_net_amount
      *
-     * @return int|null
+     * @return \Ebay\Sell\Finances\Model\Amount|null
      */
-    public function getOffset()
+    public function getChargeNetAmount()
     {
-        return $this->container['offset'];
+        return $this->container['charge_net_amount'];
     }
 
     /**
-     * Sets offset
+     * Sets charge_net_amount
      *
-     * @param int|null $offset This integer value indicates the actual position that the first monetary transaction returned on the current page has in the results set. So, if you wanted to view the 11th monetary transaction of the result set, you would set the offset value in the request to 10. In the request, you can use the offset parameter in conjunction with the limit parameter to control the pagination of the output. For example, if offset is set to 30 and limit is set to 10, the method retrieves monetary transactions 31 thru 40 from the resulting collection of monetary transactions. Note: This feature employs a zero-based list, where the first item in the list has an offset of 0. Default: 0 (zero)
+     * @param \Ebay\Sell\Finances\Model\Amount|null $charge_net_amount charge_net_amount
      *
      * @return self
      */
-    public function setOffset($offset)
+    public function setChargeNetAmount($charge_net_amount)
     {
-        $this->container['offset'] = $offset;
+        $this->container['charge_net_amount'] = $charge_net_amount;
 
         return $this;
     }
 
     /**
-     * Gets prev
+     * Gets inquiry_id
      *
      * @return string|null
      */
-    public function getPrev()
+    public function getInquiryId()
     {
-        return $this->container['prev'];
+        return $this->container['inquiry_id'];
     }
 
     /**
-     * Sets prev
+     * Sets inquiry_id
      *
-     * @param string|null $prev The getTransactions method URI to use if you wish to view the previous page of the result set. This field is only returned if there is a previous page of results to view based on the current input criteria.
+     * @param string|null $inquiry_id The unique identifier of an Item Not Received (INR) inquiry filed against an order. This field is only applicable and returned if the charge is related to has an INR inquiry filed against the order.
      *
      * @return self
      */
-    public function setPrev($prev)
+    public function setInquiryId($inquiry_id)
     {
-        $this->container['prev'] = $prev;
+        $this->container['inquiry_id'] = $inquiry_id;
 
         return $this;
     }
 
     /**
-     * Gets total
+     * Gets order_id
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getTotal()
+    public function getOrderId()
     {
-        return $this->container['total'];
+        return $this->container['order_id'];
     }
 
     /**
-     * Sets total
+     * Sets order_id
      *
-     * @param int|null $total This integer value is the total amount of monetary transactions in the result set based on the current input criteria. Based on the total number of monetary transactions that match the criteria, and on the limit and offset values, there may be additional pages in the results set.
+     * @param string|null $order_id The unique identifier of the order that is associated with the charge.
      *
      * @return self
      */
-    public function setTotal($total)
+    public function setOrderId($order_id)
     {
-        $this->container['total'] = $total;
+        $this->container['order_id'] = $order_id;
 
         return $this;
     }
 
     /**
-     * Gets transactions
+     * Gets payment_dispute_id
      *
-     * @return \Ebay\Sell\Finances\Model\Transaction[]|null
+     * @return string|null
      */
-    public function getTransactions()
+    public function getPaymentDisputeId()
     {
-        return $this->container['transactions'];
+        return $this->container['payment_dispute_id'];
     }
 
     /**
-     * Sets transactions
+     * Sets payment_dispute_id
      *
-     * @param \Ebay\Sell\Finances\Model\Transaction[]|null $transactions An array of one or more monetary transactions that match the input criteria. Details for each monetary transaction may include the unique identifier of the order associated with the monetary transaction, the status of the transaction, the amount of the order, the order's buyer, and the unique identifier of the payout (if a payout has been initiated/issued for the order).
+     * @param string|null $payment_dispute_id The unique identifier of a third-party payment dispute filed against an order. This occurs when the buyer files a dispute against the order with their payment provider, and then the dispute comes into eBay's system. This field is only applicable and returned if the charge is related to a third-party payment dispute filed against an order.
      *
      * @return self
      */
-    public function setTransactions($transactions)
+    public function setPaymentDisputeId($payment_dispute_id)
     {
-        $this->container['transactions'] = $transactions;
+        $this->container['payment_dispute_id'] = $payment_dispute_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets refund_id
+     *
+     * @return string|null
+     */
+    public function getRefundId()
+    {
+        return $this->container['refund_id'];
+    }
+
+    /**
+     * Sets refund_id
+     *
+     * @param string|null $refund_id The unique identifier of a buyer refund associated with the charge.
+     *
+     * @return self
+     */
+    public function setRefundId($refund_id)
+    {
+        $this->container['refund_id'] = $refund_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets return_id
+     *
+     * @return string|null
+     */
+    public function getReturnId()
+    {
+        return $this->container['return_id'];
+    }
+
+    /**
+     * Sets return_id
+     *
+     * @param string|null $return_id The unique identifier of an order return. This field is only applicable and returned if the charge is related to an order that was returned by the buyer.
+     *
+     * @return self
+     */
+    public function setReturnId($return_id)
+    {
+        $this->container['return_id'] = $return_id;
 
         return $this;
     }
@@ -430,7 +460,7 @@ class Transactions implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

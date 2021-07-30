@@ -1,11 +1,11 @@
 <?php
 /**
- * Transfer
+ * FundingSource
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * Transfer Class Doc Comment
+ * FundingSource Class Doc Comment
  *
  * @category Class
- * @description This type is the base response type used by &lt;code&gt;TRANSFER&lt;/code&gt; transaction type that is returned in the response.
- * @package  Ebay\Sell
+ * @description This type provided details on the funding source for the transfer.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
+class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Transfer';
+    protected static $openAPIModelName = 'FundingSource';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,11 +60,9 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'funding_source' => '\Ebay\Sell\Finances\Model\FundingSource',
-        'transaction_date' => 'string',
-        'transfer_amount' => '\Ebay\Sell\Finances\Model\Amount',
-        'transfer_detail' => '\Ebay\Sell\Finances\Model\TransferDetail',
-        'transfer_id' => 'string'
+        'brand' => 'string',
+        'memo' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -75,11 +73,9 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'funding_source' => null,
-        'transaction_date' => null,
-        'transfer_amount' => null,
-        'transfer_detail' => null,
-        'transfer_id' => null
+        'brand' => null,
+        'memo' => null,
+        'type' => null
     ];
 
     /**
@@ -109,11 +105,9 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'funding_source' => 'fundingSource',
-        'transaction_date' => 'transactionDate',
-        'transfer_amount' => 'transferAmount',
-        'transfer_detail' => 'transferDetail',
-        'transfer_id' => 'transferId'
+        'brand' => 'brand',
+        'memo' => 'memo',
+        'type' => 'type'
     ];
 
     /**
@@ -122,11 +116,9 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'funding_source' => 'setFundingSource',
-        'transaction_date' => 'setTransactionDate',
-        'transfer_amount' => 'setTransferAmount',
-        'transfer_detail' => 'setTransferDetail',
-        'transfer_id' => 'setTransferId'
+        'brand' => 'setBrand',
+        'memo' => 'setMemo',
+        'type' => 'setType'
     ];
 
     /**
@@ -135,11 +127,9 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'funding_source' => 'getFundingSource',
-        'transaction_date' => 'getTransactionDate',
-        'transfer_amount' => 'getTransferAmount',
-        'transfer_detail' => 'getTransferDetail',
-        'transfer_id' => 'getTransferId'
+        'brand' => 'getBrand',
+        'memo' => 'getMemo',
+        'type' => 'getType'
     ];
 
     /**
@@ -199,11 +189,9 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['funding_source'] = isset($data['funding_source']) ? $data['funding_source'] : null;
-        $this->container['transaction_date'] = isset($data['transaction_date']) ? $data['transaction_date'] : null;
-        $this->container['transfer_amount'] = isset($data['transfer_amount']) ? $data['transfer_amount'] : null;
-        $this->container['transfer_detail'] = isset($data['transfer_detail']) ? $data['transfer_detail'] : null;
-        $this->container['transfer_id'] = isset($data['transfer_id']) ? $data['transfer_id'] : null;
+        $this->container['brand'] = $data['brand'] ?? null;
+        $this->container['memo'] = $data['memo'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**
@@ -231,121 +219,73 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets funding_source
-     *
-     * @return \Ebay\Sell\Finances\Model\FundingSource|null
-     */
-    public function getFundingSource()
-    {
-        return $this->container['funding_source'];
-    }
-
-    /**
-     * Sets funding_source
-     *
-     * @param \Ebay\Sell\Finances\Model\FundingSource|null $funding_source funding_source
-     *
-     * @return self
-     */
-    public function setFundingSource($funding_source)
-    {
-        $this->container['funding_source'] = $funding_source;
-
-        return $this;
-    }
-
-    /**
-     * Gets transaction_date
+     * Gets brand
      *
      * @return string|null
      */
-    public function getTransactionDate()
+    public function getBrand()
     {
-        return $this->container['transaction_date'];
+        return $this->container['brand'];
     }
 
     /**
-     * Sets transaction_date
+     * Sets brand
      *
-     * @param string|null $transaction_date This timestamp indicates the date/time of the transfer. The following (UTC) format is used: YYYY-MM-DDTHH:MM:SS.SSSZ. For example, 2020-08-04T19:09:02.768Z
+     * @param string|null $brand The brand name of the credit card or the name of the financial institution that is the source of payment. This field may not be populated for other funding sources.
      *
      * @return self
      */
-    public function setTransactionDate($transaction_date)
+    public function setBrand($brand)
     {
-        $this->container['transaction_date'] = $transaction_date;
+        $this->container['brand'] = $brand;
 
         return $this;
     }
 
     /**
-     * Gets transfer_amount
-     *
-     * @return \Ebay\Sell\Finances\Model\Amount|null
-     */
-    public function getTransferAmount()
-    {
-        return $this->container['transfer_amount'];
-    }
-
-    /**
-     * Sets transfer_amount
-     *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $transfer_amount transfer_amount
-     *
-     * @return self
-     */
-    public function setTransferAmount($transfer_amount)
-    {
-        $this->container['transfer_amount'] = $transfer_amount;
-
-        return $this;
-    }
-
-    /**
-     * Gets transfer_detail
-     *
-     * @return \Ebay\Sell\Finances\Model\TransferDetail|null
-     */
-    public function getTransferDetail()
-    {
-        return $this->container['transfer_detail'];
-    }
-
-    /**
-     * Sets transfer_detail
-     *
-     * @param \Ebay\Sell\Finances\Model\TransferDetail|null $transfer_detail transfer_detail
-     *
-     * @return self
-     */
-    public function setTransferDetail($transfer_detail)
-    {
-        $this->container['transfer_detail'] = $transfer_detail;
-
-        return $this;
-    }
-
-    /**
-     * Gets transfer_id
+     * Gets memo
      *
      * @return string|null
      */
-    public function getTransferId()
+    public function getMemo()
     {
-        return $this->container['transfer_id'];
+        return $this->container['memo'];
     }
 
     /**
-     * Sets transfer_id
+     * Sets memo
      *
-     * @param string|null $transfer_id The unique identifier of the TRANSFER transaction type. This is the same value that was passed into the end of the call URI.
+     * @param string|null $memo This field provides a note about the funding source. If the seller's credit card or bank account is the funding source, this field might contain the last four digits of the credit card or bank account. This field may also be returned as null.
      *
      * @return self
      */
-    public function setTransferId($transfer_id)
+    public function setMemo($memo)
     {
-        $this->container['transfer_id'] = $transfer_id;
+        $this->container['memo'] = $memo;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type The string value returned here indicates the funding source. Possible values include the following: AVAILABLE_FUNDS: transfer is funded with seller payout funds CREDIT_CARD: transfer is funded with seller's credit card BANK: transfer is funded with a direct debit to seller's bank account on file with eBay PAY_UPON_INVOICE: eBay will bill the seller for the transfer on the monthly invoice
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }
@@ -370,7 +310,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

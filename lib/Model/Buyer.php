@@ -1,11 +1,11 @@
 <?php
 /**
- * FundingSource
+ * Buyer
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * FundingSource Class Doc Comment
+ * Buyer Class Doc Comment
  *
  * @category Class
- * @description This type provided details on the funding source for the transfer.
- * @package  Ebay\Sell
+ * @description This type is used to express details about the buyer associated with an order. At this time, the only field in this type is the eBay user ID of the buyer, but more fields may get added at a later date.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
+class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FundingSource';
+    protected static $openAPIModelName = 'Buyer';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,7 @@ class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'brand' => 'string',
-        'memo' => 'string',
-        'type' => 'string'
+        'username' => 'string'
     ];
 
     /**
@@ -73,9 +71,7 @@ class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'brand' => null,
-        'memo' => null,
-        'type' => null
+        'username' => null
     ];
 
     /**
@@ -105,9 +101,7 @@ class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'brand' => 'brand',
-        'memo' => 'memo',
-        'type' => 'type'
+        'username' => 'username'
     ];
 
     /**
@@ -116,9 +110,7 @@ class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'brand' => 'setBrand',
-        'memo' => 'setMemo',
-        'type' => 'setType'
+        'username' => 'setUsername'
     ];
 
     /**
@@ -127,9 +119,7 @@ class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'brand' => 'getBrand',
-        'memo' => 'getMemo',
-        'type' => 'getType'
+        'username' => 'getUsername'
     ];
 
     /**
@@ -189,9 +179,7 @@ class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['brand'] = isset($data['brand']) ? $data['brand'] : null;
-        $this->container['memo'] = isset($data['memo']) ? $data['memo'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['username'] = $data['username'] ?? null;
     }
 
     /**
@@ -219,73 +207,25 @@ class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets brand
+     * Gets username
      *
      * @return string|null
      */
-    public function getBrand()
+    public function getUsername()
     {
-        return $this->container['brand'];
+        return $this->container['username'];
     }
 
     /**
-     * Sets brand
+     * Sets username
      *
-     * @param string|null $brand The brand name of the credit card or the name of the financial institution that is the source of payment. This field may not be populated for other funding sources.
+     * @param string|null $username The eBay user ID of the order's buyer.
      *
      * @return self
      */
-    public function setBrand($brand)
+    public function setUsername($username)
     {
-        $this->container['brand'] = $brand;
-
-        return $this;
-    }
-
-    /**
-     * Gets memo
-     *
-     * @return string|null
-     */
-    public function getMemo()
-    {
-        return $this->container['memo'];
-    }
-
-    /**
-     * Sets memo
-     *
-     * @param string|null $memo This field provides a note about the funding source. If the seller's credit card or bank account is the funding source, this field might contain the last four digits of the credit card or bank account. This field may also be returned as null.
-     *
-     * @return self
-     */
-    public function setMemo($memo)
-    {
-        $this->container['memo'] = $memo;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type The string value returned here indicates the funding source. Possible values include the following: AVAILABLE_FUNDS: transfer is funded with seller payout funds CREDIT_CARD: transfer is funded with seller's credit card BANK: transfer is funded with a direct debit to seller's bank account on file with eBay PAY_UPON_INVOICE: eBay will bill the seller for the transfer on the monthly invoice
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
+        $this->container['username'] = $username;
 
         return $this;
     }
@@ -310,7 +250,7 @@ class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

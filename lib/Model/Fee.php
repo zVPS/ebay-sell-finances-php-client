@@ -1,11 +1,11 @@
 <?php
 /**
- * OrderLineItem
+ * Fee
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Finances\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Finances\ObjectSerializer;
 
 /**
- * OrderLineItem Class Doc Comment
+ * Fee Class Doc Comment
  *
  * @category Class
- * @description This type is used to show the fees that are deducted from a seller payout for each line item in an order.
- * @package  Ebay\Sell
+ * @description This type is used to display fees that are automatically deducted from seller payouts.
+ * @package  Ebay\Sell\Finances
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
+class Fee implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrderLineItem';
+    protected static $openAPIModelName = 'Fee';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,9 @@ class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'fee_basis_amount' => '\Ebay\Sell\Finances\Model\Amount',
-        'line_item_id' => 'string',
-        'marketplace_fees' => '\Ebay\Sell\Finances\Model\Fee[]'
+        'amount' => '\Ebay\Sell\Finances\Model\Amount',
+        'fee_memo' => 'string',
+        'fee_type' => 'string'
     ];
 
     /**
@@ -73,9 +73,9 @@ class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'fee_basis_amount' => null,
-        'line_item_id' => null,
-        'marketplace_fees' => null
+        'amount' => null,
+        'fee_memo' => null,
+        'fee_type' => null
     ];
 
     /**
@@ -105,9 +105,9 @@ class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'fee_basis_amount' => 'feeBasisAmount',
-        'line_item_id' => 'lineItemId',
-        'marketplace_fees' => 'marketplaceFees'
+        'amount' => 'amount',
+        'fee_memo' => 'feeMemo',
+        'fee_type' => 'feeType'
     ];
 
     /**
@@ -116,9 +116,9 @@ class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'fee_basis_amount' => 'setFeeBasisAmount',
-        'line_item_id' => 'setLineItemId',
-        'marketplace_fees' => 'setMarketplaceFees'
+        'amount' => 'setAmount',
+        'fee_memo' => 'setFeeMemo',
+        'fee_type' => 'setFeeType'
     ];
 
     /**
@@ -127,9 +127,9 @@ class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'fee_basis_amount' => 'getFeeBasisAmount',
-        'line_item_id' => 'getLineItemId',
-        'marketplace_fees' => 'getMarketplaceFees'
+        'amount' => 'getAmount',
+        'fee_memo' => 'getFeeMemo',
+        'fee_type' => 'getFeeType'
     ];
 
     /**
@@ -189,9 +189,9 @@ class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['fee_basis_amount'] = isset($data['fee_basis_amount']) ? $data['fee_basis_amount'] : null;
-        $this->container['line_item_id'] = isset($data['line_item_id']) ? $data['line_item_id'] : null;
-        $this->container['marketplace_fees'] = isset($data['marketplace_fees']) ? $data['marketplace_fees'] : null;
+        $this->container['amount'] = $data['amount'] ?? null;
+        $this->container['fee_memo'] = $data['fee_memo'] ?? null;
+        $this->container['fee_type'] = $data['fee_type'] ?? null;
     }
 
     /**
@@ -219,73 +219,73 @@ class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets fee_basis_amount
+     * Gets amount
      *
      * @return \Ebay\Sell\Finances\Model\Amount|null
      */
-    public function getFeeBasisAmount()
+    public function getAmount()
     {
-        return $this->container['fee_basis_amount'];
+        return $this->container['amount'];
     }
 
     /**
-     * Sets fee_basis_amount
+     * Sets amount
      *
-     * @param \Ebay\Sell\Finances\Model\Amount|null $fee_basis_amount fee_basis_amount
+     * @param \Ebay\Sell\Finances\Model\Amount|null $amount amount
      *
      * @return self
      */
-    public function setFeeBasisAmount($fee_basis_amount)
+    public function setAmount($amount)
     {
-        $this->container['fee_basis_amount'] = $fee_basis_amount;
+        $this->container['amount'] = $amount;
 
         return $this;
     }
 
     /**
-     * Gets line_item_id
+     * Gets fee_memo
      *
      * @return string|null
      */
-    public function getLineItemId()
+    public function getFeeMemo()
     {
-        return $this->container['line_item_id'];
+        return $this->container['fee_memo'];
     }
 
     /**
-     * Sets line_item_id
+     * Sets fee_memo
      *
-     * @param string|null $line_item_id The unique identifier of an order line item.
+     * @param string|null $fee_memo A description of the fee that was deducted from the seller payout.
      *
      * @return self
      */
-    public function setLineItemId($line_item_id)
+    public function setFeeMemo($fee_memo)
     {
-        $this->container['line_item_id'] = $line_item_id;
+        $this->container['fee_memo'] = $fee_memo;
 
         return $this;
     }
 
     /**
-     * Gets marketplace_fees
+     * Gets fee_type
      *
-     * @return \Ebay\Sell\Finances\Model\Fee[]|null
+     * @return string|null
      */
-    public function getMarketplaceFees()
+    public function getFeeType()
     {
-        return $this->container['marketplace_fees'];
+        return $this->container['fee_type'];
     }
 
     /**
-     * Sets marketplace_fees
+     * Sets fee_type
      *
-     * @param \Ebay\Sell\Finances\Model\Fee[]|null $marketplace_fees An array of all fees accrued for the order line item and deducted from a seller payout.
+     * @param string|null $fee_type The enumeration value returned here indicates the type of fee that was deducted from the seller payout. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/finances/types/api:FeeTypeEnum'>eBay API documentation</a>
      *
      * @return self
      */
-    public function setMarketplaceFees($marketplace_fees)
+    public function setFeeType($fee_type)
     {
-        $this->container['marketplace_fees'] = $marketplace_fees;
+        $this->container['fee_type'] = $fee_type;
 
         return $this;
     }
@@ -310,7 +310,7 @@ class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

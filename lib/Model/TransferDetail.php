@@ -45,7 +45,7 @@ use \Ebay\Sell\Finances\ObjectSerializer;
  */
 class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -189,9 +189,9 @@ class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['balance_adjustment'] = $data['balance_adjustment'] ?? null;
-        $this->container['charges'] = $data['charges'] ?? null;
-        $this->container['total_charge_net_amount'] = $data['total_charge_net_amount'] ?? null;
+        $this->container['balance_adjustment'] = isset($data['balance_adjustment']) ? $data['balance_adjustment'] : null;
+        $this->container['charges'] = isset($data['charges']) ? $data['charges'] : null;
+        $this->container['total_charge_net_amount'] = isset($data['total_charge_net_amount']) ? $data['total_charge_net_amount'] : null;
     }
 
     /**
@@ -310,7 +310,7 @@ class TransferDetail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

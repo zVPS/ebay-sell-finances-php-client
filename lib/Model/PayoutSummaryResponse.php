@@ -45,7 +45,7 @@ use \Ebay\Sell\Finances\ObjectSerializer;
  */
 class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -189,9 +189,9 @@ class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['amount'] = $data['amount'] ?? null;
-        $this->container['payout_count'] = $data['payout_count'] ?? null;
-        $this->container['transaction_count'] = $data['transaction_count'] ?? null;
+        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
+        $this->container['payout_count'] = isset($data['payout_count']) ? $data['payout_count'] : null;
+        $this->container['transaction_count'] = isset($data['transaction_count']) ? $data['transaction_count'] : null;
     }
 
     /**
@@ -310,7 +310,7 @@ class PayoutSummaryResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

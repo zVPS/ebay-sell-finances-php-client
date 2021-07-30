@@ -45,7 +45,7 @@ use \Ebay\Sell\Finances\ObjectSerializer;
  */
 class PayoutInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -189,9 +189,9 @@ class PayoutInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['account_last_four_digits'] = $data['account_last_four_digits'] ?? null;
-        $this->container['instrument_type'] = $data['instrument_type'] ?? null;
-        $this->container['nickname'] = $data['nickname'] ?? null;
+        $this->container['account_last_four_digits'] = isset($data['account_last_four_digits']) ? $data['account_last_four_digits'] : null;
+        $this->container['instrument_type'] = isset($data['instrument_type']) ? $data['instrument_type'] : null;
+        $this->container['nickname'] = isset($data['nickname']) ? $data['nickname'] : null;
     }
 
     /**
@@ -310,7 +310,7 @@ class PayoutInstrument implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

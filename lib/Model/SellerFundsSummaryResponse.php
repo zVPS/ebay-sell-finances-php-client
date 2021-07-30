@@ -45,7 +45,7 @@ use \Ebay\Sell\Finances\ObjectSerializer;
  */
 class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -194,10 +194,10 @@ class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
-        $this->container['available_funds'] = $data['available_funds'] ?? null;
-        $this->container['funds_on_hold'] = $data['funds_on_hold'] ?? null;
-        $this->container['processing_funds'] = $data['processing_funds'] ?? null;
-        $this->container['total_funds'] = $data['total_funds'] ?? null;
+        $this->container['available_funds'] = isset($data['available_funds']) ? $data['available_funds'] : null;
+        $this->container['funds_on_hold'] = isset($data['funds_on_hold']) ? $data['funds_on_hold'] : null;
+        $this->container['processing_funds'] = isset($data['processing_funds']) ? $data['processing_funds'] : null;
+        $this->container['total_funds'] = isset($data['total_funds']) ? $data['total_funds'] : null;
     }
 
     /**
@@ -340,7 +340,7 @@ class SellerFundsSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

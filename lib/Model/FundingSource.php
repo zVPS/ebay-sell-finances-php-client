@@ -45,7 +45,7 @@ use \Ebay\Sell\Finances\ObjectSerializer;
  */
 class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -189,9 +189,9 @@ class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['brand'] = $data['brand'] ?? null;
-        $this->container['memo'] = $data['memo'] ?? null;
-        $this->container['type'] = $data['type'] ?? null;
+        $this->container['brand'] = isset($data['brand']) ? $data['brand'] : null;
+        $this->container['memo'] = isset($data['memo']) ? $data['memo'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
     /**
@@ -310,7 +310,7 @@ class FundingSource implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

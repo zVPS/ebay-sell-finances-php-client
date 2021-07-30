@@ -45,7 +45,7 @@ use \Ebay\Sell\Finances\ObjectSerializer;
  */
 class TransactionSummaryResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -309,33 +309,33 @@ class TransactionSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
-        $this->container['adjustment_amount'] = $data['adjustment_amount'] ?? null;
-        $this->container['adjustment_booking_entry'] = $data['adjustment_booking_entry'] ?? null;
-        $this->container['adjustment_count'] = $data['adjustment_count'] ?? null;
-        $this->container['balance_transfer_amount'] = $data['balance_transfer_amount'] ?? null;
-        $this->container['balance_transfer_booking_entry'] = $data['balance_transfer_booking_entry'] ?? null;
-        $this->container['balance_transfer_count'] = $data['balance_transfer_count'] ?? null;
-        $this->container['credit_amount'] = $data['credit_amount'] ?? null;
-        $this->container['credit_booking_entry'] = $data['credit_booking_entry'] ?? null;
-        $this->container['credit_count'] = $data['credit_count'] ?? null;
-        $this->container['dispute_amount'] = $data['dispute_amount'] ?? null;
-        $this->container['dispute_booking_entry'] = $data['dispute_booking_entry'] ?? null;
-        $this->container['dispute_count'] = $data['dispute_count'] ?? null;
-        $this->container['non_sale_charge_amount'] = $data['non_sale_charge_amount'] ?? null;
-        $this->container['non_sale_charge_booking_entry'] = $data['non_sale_charge_booking_entry'] ?? null;
-        $this->container['non_sale_charge_count'] = $data['non_sale_charge_count'] ?? null;
-        $this->container['on_hold_amount'] = $data['on_hold_amount'] ?? null;
-        $this->container['on_hold_booking_entry'] = $data['on_hold_booking_entry'] ?? null;
-        $this->container['on_hold_count'] = $data['on_hold_count'] ?? null;
-        $this->container['refund_amount'] = $data['refund_amount'] ?? null;
-        $this->container['refund_booking_entry'] = $data['refund_booking_entry'] ?? null;
-        $this->container['refund_count'] = $data['refund_count'] ?? null;
-        $this->container['shipping_label_amount'] = $data['shipping_label_amount'] ?? null;
-        $this->container['shipping_label_booking_entry'] = $data['shipping_label_booking_entry'] ?? null;
-        $this->container['shipping_label_count'] = $data['shipping_label_count'] ?? null;
-        $this->container['transfer_amount'] = $data['transfer_amount'] ?? null;
-        $this->container['transfer_booking_entry'] = $data['transfer_booking_entry'] ?? null;
-        $this->container['transfer_count'] = $data['transfer_count'] ?? null;
+        $this->container['adjustment_amount'] = isset($data['adjustment_amount']) ? $data['adjustment_amount'] : null;
+        $this->container['adjustment_booking_entry'] = isset($data['adjustment_booking_entry']) ? $data['adjustment_booking_entry'] : null;
+        $this->container['adjustment_count'] = isset($data['adjustment_count']) ? $data['adjustment_count'] : null;
+        $this->container['balance_transfer_amount'] = isset($data['balance_transfer_amount']) ? $data['balance_transfer_amount'] : null;
+        $this->container['balance_transfer_booking_entry'] = isset($data['balance_transfer_booking_entry']) ? $data['balance_transfer_booking_entry'] : null;
+        $this->container['balance_transfer_count'] = isset($data['balance_transfer_count']) ? $data['balance_transfer_count'] : null;
+        $this->container['credit_amount'] = isset($data['credit_amount']) ? $data['credit_amount'] : null;
+        $this->container['credit_booking_entry'] = isset($data['credit_booking_entry']) ? $data['credit_booking_entry'] : null;
+        $this->container['credit_count'] = isset($data['credit_count']) ? $data['credit_count'] : null;
+        $this->container['dispute_amount'] = isset($data['dispute_amount']) ? $data['dispute_amount'] : null;
+        $this->container['dispute_booking_entry'] = isset($data['dispute_booking_entry']) ? $data['dispute_booking_entry'] : null;
+        $this->container['dispute_count'] = isset($data['dispute_count']) ? $data['dispute_count'] : null;
+        $this->container['non_sale_charge_amount'] = isset($data['non_sale_charge_amount']) ? $data['non_sale_charge_amount'] : null;
+        $this->container['non_sale_charge_booking_entry'] = isset($data['non_sale_charge_booking_entry']) ? $data['non_sale_charge_booking_entry'] : null;
+        $this->container['non_sale_charge_count'] = isset($data['non_sale_charge_count']) ? $data['non_sale_charge_count'] : null;
+        $this->container['on_hold_amount'] = isset($data['on_hold_amount']) ? $data['on_hold_amount'] : null;
+        $this->container['on_hold_booking_entry'] = isset($data['on_hold_booking_entry']) ? $data['on_hold_booking_entry'] : null;
+        $this->container['on_hold_count'] = isset($data['on_hold_count']) ? $data['on_hold_count'] : null;
+        $this->container['refund_amount'] = isset($data['refund_amount']) ? $data['refund_amount'] : null;
+        $this->container['refund_booking_entry'] = isset($data['refund_booking_entry']) ? $data['refund_booking_entry'] : null;
+        $this->container['refund_count'] = isset($data['refund_count']) ? $data['refund_count'] : null;
+        $this->container['shipping_label_amount'] = isset($data['shipping_label_amount']) ? $data['shipping_label_amount'] : null;
+        $this->container['shipping_label_booking_entry'] = isset($data['shipping_label_booking_entry']) ? $data['shipping_label_booking_entry'] : null;
+        $this->container['shipping_label_count'] = isset($data['shipping_label_count']) ? $data['shipping_label_count'] : null;
+        $this->container['transfer_amount'] = isset($data['transfer_amount']) ? $data['transfer_amount'] : null;
+        $this->container['transfer_booking_entry'] = isset($data['transfer_booking_entry']) ? $data['transfer_booking_entry'] : null;
+        $this->container['transfer_count'] = isset($data['transfer_count']) ? $data['transfer_count'] : null;
     }
 
     /**
@@ -1030,7 +1030,7 @@ class TransactionSummaryResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

@@ -45,7 +45,7 @@ use \Ebay\Sell\Finances\ObjectSerializer;
  */
 class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -184,8 +184,8 @@ class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['adjustment_amount'] = $data['adjustment_amount'] ?? null;
-        $this->container['adjustment_type'] = $data['adjustment_type'] ?? null;
+        $this->container['adjustment_amount'] = isset($data['adjustment_amount']) ? $data['adjustment_amount'] : null;
+        $this->container['adjustment_type'] = isset($data['adjustment_type']) ? $data['adjustment_type'] : null;
     }
 
     /**
@@ -280,7 +280,7 @@ class BalanceAdjustment implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

@@ -45,7 +45,7 @@ use \Ebay\Sell\Finances\ObjectSerializer;
  */
 class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -199,11 +199,11 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['funding_source'] = $data['funding_source'] ?? null;
-        $this->container['transaction_date'] = $data['transaction_date'] ?? null;
-        $this->container['transfer_amount'] = $data['transfer_amount'] ?? null;
-        $this->container['transfer_detail'] = $data['transfer_detail'] ?? null;
-        $this->container['transfer_id'] = $data['transfer_id'] ?? null;
+        $this->container['funding_source'] = isset($data['funding_source']) ? $data['funding_source'] : null;
+        $this->container['transaction_date'] = isset($data['transaction_date']) ? $data['transaction_date'] : null;
+        $this->container['transfer_amount'] = isset($data['transfer_amount']) ? $data['transfer_amount'] : null;
+        $this->container['transfer_detail'] = isset($data['transfer_detail']) ? $data['transfer_detail'] : null;
+        $this->container['transfer_id'] = isset($data['transfer_id']) ? $data['transfer_id'] : null;
     }
 
     /**
@@ -370,7 +370,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

@@ -45,7 +45,7 @@ use \Ebay\Sell\Finances\ObjectSerializer;
  */
 class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -189,9 +189,9 @@ class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['fee_basis_amount'] = $data['fee_basis_amount'] ?? null;
-        $this->container['line_item_id'] = $data['line_item_id'] ?? null;
-        $this->container['marketplace_fees'] = $data['marketplace_fees'] ?? null;
+        $this->container['fee_basis_amount'] = isset($data['fee_basis_amount']) ? $data['fee_basis_amount'] : null;
+        $this->container['line_item_id'] = isset($data['line_item_id']) ? $data['line_item_id'] : null;
+        $this->container['marketplace_fees'] = isset($data['marketplace_fees']) ? $data['marketplace_fees'] : null;
     }
 
     /**
@@ -310,7 +310,7 @@ class OrderLineItem implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

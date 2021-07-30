@@ -45,7 +45,7 @@ use \Ebay\Sell\Finances\ObjectSerializer;
  */
 class Payout implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -224,16 +224,16 @@ class Payout implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['amount'] = $data['amount'] ?? null;
-        $this->container['bank_reference'] = $data['bank_reference'] ?? null;
-        $this->container['last_attempted_payout_date'] = $data['last_attempted_payout_date'] ?? null;
-        $this->container['payout_date'] = $data['payout_date'] ?? null;
-        $this->container['payout_id'] = $data['payout_id'] ?? null;
-        $this->container['payout_memo'] = $data['payout_memo'] ?? null;
-        $this->container['payout_instrument'] = $data['payout_instrument'] ?? null;
-        $this->container['payout_status'] = $data['payout_status'] ?? null;
-        $this->container['payout_status_description'] = $data['payout_status_description'] ?? null;
-        $this->container['transaction_count'] = $data['transaction_count'] ?? null;
+        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
+        $this->container['bank_reference'] = isset($data['bank_reference']) ? $data['bank_reference'] : null;
+        $this->container['last_attempted_payout_date'] = isset($data['last_attempted_payout_date']) ? $data['last_attempted_payout_date'] : null;
+        $this->container['payout_date'] = isset($data['payout_date']) ? $data['payout_date'] : null;
+        $this->container['payout_id'] = isset($data['payout_id']) ? $data['payout_id'] : null;
+        $this->container['payout_memo'] = isset($data['payout_memo']) ? $data['payout_memo'] : null;
+        $this->container['payout_instrument'] = isset($data['payout_instrument']) ? $data['payout_instrument'] : null;
+        $this->container['payout_status'] = isset($data['payout_status']) ? $data['payout_status'] : null;
+        $this->container['payout_status_description'] = isset($data['payout_status_description']) ? $data['payout_status_description'] : null;
+        $this->container['transaction_count'] = isset($data['transaction_count']) ? $data['transaction_count'] : null;
     }
 
     /**
@@ -520,7 +520,7 @@ class Payout implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**
